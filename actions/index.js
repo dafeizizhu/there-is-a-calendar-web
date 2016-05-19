@@ -6,3 +6,17 @@ export function setCurrent(date) {
     date
   }
 }
+
+export const SET_ROUTE = 'SET_ROUTE'
+
+export const ROUTES = {
+  CALENDAR: 'CALENDAR',
+  SPLASH: 'SPLASH'
+}
+
+export function setRoute(route) {
+  return {
+    type: SET_ROUTE,
+    route
+  }
+}
