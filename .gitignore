@@ -1,2 +1,5 @@
 **/node_modules/*
 build/assets/bundle.js
+build/assets/bundle.js.map
+build/bundle.js
+build/bundle.js.map

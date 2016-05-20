@@ -1,8 +1,8 @@
-export const SET_CURRENT = 'SET_CURRENT'
+export const SET_DATE = 'SET_DATE'
 
-export function setCurrent(date) {
+export function setDate(date) {
   return {
-    type: SET_CURRENT,
+    type: SET_DATE,
     date
   }
 }

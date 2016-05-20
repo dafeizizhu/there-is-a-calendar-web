@@ -1,17 +1,22 @@
 import { combineReducers } from 'redux'
-import { SET_CURRENT } from '../actions/Calendar'
+import { SET_DATE } from '../actions/Calendar'
 
-function currentDate(state = new Date(), action) {
+function date(state = new Date(), action) {
   switch(action.type) {
-    case SET_CURRENT:
+    case SET_DATE:
       return action.date
     default:
       return state
   }
 }
 
+function type(state = 'year', action) {
+  return state
+}
+
 const calendarApp = combineReducers({
-  currentDate
+  date,
+  type
 })
 
 export default calendarApp

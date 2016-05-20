@@ -9,6 +9,9 @@ document.body.appendChild(rootElement)
 
 import { Router, Route, hashHistory } from 'react-router'
 
+// css reset
+require('./styles/reset.css')
+
 render(
   <Router history={hashHistory}>
     <Route path='/' component={Splash} />
