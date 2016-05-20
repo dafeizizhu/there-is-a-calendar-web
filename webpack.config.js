@@ -3,7 +3,8 @@ var path = require('path')
 module.exports = {
   entry: './index.js',
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/build'),
+    publicPath: '/assets/',
     filename: 'bundle.js'
   },
   devtool: 'source-map',
