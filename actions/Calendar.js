@@ -6,3 +6,12 @@ export function setDate(date) {
     date
   }
 }
+
+export const SET_TYPE = 'SET_TYPE'
+
+export function setType(ctype) {
+  return {
+    type: SET_TYPE,
+    ctype
+  }
+}

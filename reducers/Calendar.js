@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { SET_DATE } from '../actions/Calendar'
+import { SET_DATE, SET_TYPE } from '../actions/Calendar'
 
 function date(state = new Date(), action) {
   switch(action.type) {
@@ -11,7 +11,12 @@ function date(state = new Date(), action) {
 }
 
 function type(state = 'year', action) {
-  return state
+  switch(action.type) {
+    case SET_TYPE:
+      return action.ctype
+    default:
+      return state
+  }
 }
 
 const calendarApp = combineReducers({

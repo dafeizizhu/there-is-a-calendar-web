@@ -40,8 +40,6 @@ class CalendarYearItem extends Component {
 const styles = {
   container: {
     boxSizing: 'border-box',
-    borderBottom: '1px solid gray',
-    borderRight: '1px solid gray',
     padding: '5px'
   },
   days: {
