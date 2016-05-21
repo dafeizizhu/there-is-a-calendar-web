@@ -12,10 +12,10 @@ class CalendarYearItem extends Component {
 
     let i, itemDate
     for (i = firstDay.getDay(); i > 0; i--) {
-      itemDate = new Date(year, month, - i).getDate()
+      itemDate = new Date(year, month, 1 - i).getDate()
       days.push(<span key={[year, month, itemDate, 'gray'].join('-')} style={Object.assign({}, styles.item, styles.gray)}>{itemDate}</span>)
     }
-    for (i = 1; i < new Date(year, month + 1, -1).getDate(); i++) {
+    for (i = 1; i <= new Date(year, month + 1, 1, -1).getDate(); i++) {
       itemDate = new Date(year, month, i).getDate()
       if (current && i == currentDate.getDate()) {
         days.push(<span key={[year, month, itemDate].join('-')} style={Object.assign({}, styles.item, styles.current)}>{itemDate}</span>)
@@ -23,8 +23,8 @@ class CalendarYearItem extends Component {
         days.push(<span key={[year, month, itemDate].join('-')} style={styles.item}>{itemDate}</span>)
       }
     }
-    for (i = new Date(year, month + 1, -1).getDay(); i < 7; i++) {
-      itemDate = new Date(year, month + 1, i - new Date(year, month + 1, -1).getDay() + 1).getDate()
+    for (i = new Date(year, month + 1, 1, -1).getDay(); i < 6; i++) {
+      itemDate = new Date(year, month + 1, i - new Date(year, month + 1, 1, -1).getDay() + 1).getDate()
       days.push(<span key={[year, month, itemDate, 'gray'].join('-')} style={Object.assign({}, styles.item, styles.gray)}>{itemDate}</span>)
     }
 
@@ -56,7 +56,7 @@ const styles = {
     lineHeight: 1.5
   },
   gray: {
-    color: 'gray'
+    color: '#ccc'
   },
   current: {
     backgroundColor: 'red',
