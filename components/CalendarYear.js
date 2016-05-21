@@ -19,7 +19,7 @@ class CalendarYear extends Component {
     return (
       <div style={styles.calendar}>
         <h2 style={styles.title}>{year}年</h2>
-        <div style={styles.container}>{rows.map(((row, i) => <div style={styles.row} key={i}>{row}</div>))}</div>     
+        <div style={styles.container}>{rows.map(((row, i) => <div style={styles.row} key={i}>{row}</div>))}</div> 
       </div>
     )
   }
@@ -27,11 +27,12 @@ class CalendarYear extends Component {
 
 const styles = {
   calendar: {
-    flexDirection: 'column'
+    flexDirection: 'column',
+    flex: 1,
+    display: 'flex'
   },
   container: {
     display: 'flex',
-    flexWrap: 'wrap',
     flex: 1,
     flexDirection: 'column'
   },
