@@ -46,7 +46,10 @@ const styles = {
     fontFamily: '微软雅黑, sans-serif',
     height: '100vh',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    MozUserSelect: 'none',
+    WebkitUserSelect: 'none',
+    msUserSelect: 'none'
   },
   menu: {
     height: '50px',
