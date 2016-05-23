@@ -11,6 +11,14 @@ class Calendar extends Component {
     const { onYearClick } = this.props
     if (onYearClick) onYearClick()
   }
+  handlePrevYearClick() {
+    const { onPrevYearClick } = this.props
+    if (onPrevYearClick) onPrevYearClick()
+  }
+  handleNextYearClick() {
+    const { onNextYearClick } = this.props
+    if (onNextYearClick) onNextYearClick()
+  }
   render() {
     const { date, currentDate, style, type } = this.props
     let c = (<div>No match type[{type}]!</div>),
@@ -18,6 +26,12 @@ class Calendar extends Component {
     switch (type) {
       case 'year':
         c = <CalendarYear date={date} currentDate={currentDate} onTodayClick={this.props.onTodayClick}/>
+        y = (
+          <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}>
+            <a onClick={this.handlePrevYearClick.bind(this)} style={{marginRight: '10px'}}>上一年</a>
+            <a onClick={this.handleNextYearClick.bind(this)}>下一年</a>
+          </li>
+        )
         break
       case 'month':
         c = <div>I am the month calendar</div>
@@ -32,7 +46,7 @@ class Calendar extends Component {
         </ul>
         <div style={styles.calendar}>{ c }</div>
         <ul style={styles.menu}>
-          <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)} onClick={this.handleTodayClick.bind(this)}>今天</li>
+          <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleTodayClick.bind(this)}>今天</a></li>
           <li style={styles.menuItem}>日历</li>
           <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}>收件箱</li>
         </ul>
