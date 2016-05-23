@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 
 import CalendarYear from './CalendarYear'
+import CalendarMonth from './CalendarMonth'
 
 class Calendar extends Component {
   handleTodayClick() {
@@ -34,7 +35,7 @@ class Calendar extends Component {
         )
         break
       case 'month':
-        c = <div>I am the month calendar</div>
+        c = <CalendarMonth date={date} currentDate={currentDate} /> 
         y = <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleYearClick.bind(this)}>{date.getFullYear()}年</a></li>
         break
     }
