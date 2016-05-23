@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import CalendarYearItem from './CalendarYearItem'
 
 class CalendarYear extends Component {
+  handleMonthClick(month) {
+    const { onMonthClick } = this.props
+    if (onMonthClick) onMonthClick(month)
+  }
   render() {
     const { date, currentDate, style } = this.props
     const year = date.getFullYear()
@@ -13,7 +17,7 @@ class CalendarYear extends Component {
       if (!rows[row]) {
         rows[row] = []
       }
-      rows[row].push(<CalendarYearItem style={styles.item} key={i} date={new Date(year, i, 1)} currentDate={currentDate} />)
+      rows[row].push(<CalendarYearItem style={styles.item} key={i} month={i} date={new Date(year, i, 1)} currentDate={currentDate} onClick={this.handleMonthClick.bind(this)}/>)
     }
 
     return (

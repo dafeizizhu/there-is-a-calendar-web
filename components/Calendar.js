@@ -26,7 +26,9 @@ class Calendar extends Component {
         y = ''
     switch (type) {
       case 'year':
-        c = <CalendarYear date={date} currentDate={currentDate} onTodayClick={this.props.onTodayClick}/>
+        c = <CalendarYear date={date} currentDate={currentDate}
+          onTodayClick={this.props.onTodayClick}
+          onMonthClick={this.props.onMonthClick} />
         y = (
           <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}>
             <a onClick={this.handlePrevYearClick.bind(this)} style={{marginRight: '10px'}}>上一年</a>

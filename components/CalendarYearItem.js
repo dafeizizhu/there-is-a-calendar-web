@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 class CalendarYearItem extends Component {
+  handleClick() {
+    const { month, onClick } = this.props
+    if (onClick) onClick(month)
+  }
   render() {
     const { date, currentDate, style } = this.props
     const year = date.getFullYear()
@@ -29,7 +33,7 @@ class CalendarYearItem extends Component {
     }
 
     return (
-      <div style={Object.assign({}, styles.container, style)}>
+      <div style={Object.assign({}, styles.container, style)} onClick={this.handleClick.bind(this)}>
         <div style={styles.title}>{month + 1}月</div>
         <div style={styles.days}>{days}</div>
       </div>

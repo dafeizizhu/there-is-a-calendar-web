@@ -28,6 +28,11 @@ class CalendarContainer extends Component {
     const { date, dispatch } = this.props
     dispatch(setDate(new Date(date.getFullYear() + 1, 0, 1)))
   }
+  handleMonthClick(key) {
+    const { date, dispatch } = this.props
+    dispatch(setDate(new Date(date.getFullYear(), key, 1)))
+    dispatch(setType('month'))
+  }
   render() {
     return (
       <div>
@@ -37,7 +42,8 @@ class CalendarContainer extends Component {
           onTodayClick={this.handleTodayClick.bind(this)}
           onYearClick={this.handleYearClick.bind(this)}
           onPrevYearClick={this.handlePrevYearClick.bind(this)}
-          onNextYearClick={this.handleNextYearClick.bind(this)} />
+          onNextYearClick={this.handleNextYearClick.bind(this)} 
+          onMonthClick={this.handleMonthClick.bind(this)}/>
       </div>
     )
   }
