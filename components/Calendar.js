@@ -37,7 +37,9 @@ class Calendar extends Component {
         )
         break
       case 'month':
-        c = <CalendarMonth date={date} currentDate={currentDate} /> 
+        c = <CalendarMonth date={date} currentDate={currentDate} 
+          onPrevMonthClick={this.props.onPrevMonthClick}
+          onNextMonthClick={this.props.onNextMonthClick} /> 
         y = <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleYearClick.bind(this)}>{date.getFullYear()}年</a></li>
         break
     }
