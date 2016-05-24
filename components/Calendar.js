@@ -12,14 +12,6 @@ class Calendar extends Component {
     const { onYearClick } = this.props
     if (onYearClick) onYearClick()
   }
-  handlePrevYearClick() {
-    const { onPrevYearClick } = this.props
-    if (onPrevYearClick) onPrevYearClick()
-  }
-  handleNextYearClick() {
-    const { onNextYearClick } = this.props
-    if (onNextYearClick) onNextYearClick()
-  }
   render() {
     const { date, currentDate, style, type } = this.props
     let c = (<div>No match type[{type}]!</div>),
@@ -28,13 +20,9 @@ class Calendar extends Component {
       case 'year':
         c = <CalendarYear date={date} currentDate={currentDate}
           onTodayClick={this.props.onTodayClick}
-          onMonthClick={this.props.onMonthClick} />
-        y = (
-          <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}>
-            <a onClick={this.handlePrevYearClick.bind(this)} style={{marginRight: '10px'}}>上一年</a>
-            <a onClick={this.handleNextYearClick.bind(this)}>下一年</a>
-          </li>
-        )
+          onMonthClick={this.props.onMonthClick}
+          onPrevYearClick={this.props.onPrevYearClick} 
+          onNextYearClick={this.props.onNextYearClick} /> 
         break
       case 'month':
         c = <CalendarMonth date={date} currentDate={currentDate} 

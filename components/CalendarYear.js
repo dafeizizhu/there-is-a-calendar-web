@@ -7,6 +7,14 @@ class CalendarYear extends Component {
     const { onMonthClick } = this.props
     if (onMonthClick) onMonthClick(month)
   }
+  handlePrevYearClick() {
+    const { onPrevYearClick } = this.props
+    if (onPrevYearClick) onPrevYearClick()
+  }
+  handleNextYearClick() {
+    const { onNextYearClick } = this.props
+    if (onNextYearClick) onNextYearClick()
+  }
   render() {
     const { date, currentDate, style } = this.props
     const year = date.getFullYear()
@@ -22,7 +30,15 @@ class CalendarYear extends Component {
 
     return (
       <div style={styles.calendar}>
-        <h2 style={styles.title}>{year}年</h2>
+        <ul style={styles.title}>
+          <li style={Object.assign({}, styles.titleItem, styles.titleItemFirst)}>
+            <a onClick={this.handlePrevYearClick.bind(this)} style={{marginRight: '10px'}}>上一年</a>
+          </li>
+          <li style={styles.titleItem}>{year}年</li>
+          <li style={Object.assign({}, styles.titleItem, styles.titleItemLast)}>
+            <a onClick={this.handleNextYearClick.bind(this)}>下一年</a>
+          </li>
+        </ul> 
         <div style={styles.container}>{rows.map(((row, i) => <div style={styles.row} key={i}>{row}</div>))}</div> 
       </div>
     )
@@ -44,11 +60,25 @@ const styles = {
     flex: 1
   },
   title: {
-    borderBottom: '1px solid gray',
-    fontSize: '30px',
-    lineHeight: 1.5,
-    padding: '5px',
-    fontWeight: 'normal'
+    borderBottom: '1px solid #ccc',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    height: '36px'
+  },
+  titleItem: {
+    flex: 1,
+    fontSize: '18px',
+    color: 'red',
+    textAlign: 'center'
+  },
+  titleItemFirst: {
+    textAlign: 'left',
+    paddingLeft: '20px'
+  },
+  titleItemLast: {
+    textAlign: 'right',
+    paddingRight: '20px'
   },
   row: {
     flex: 1,
