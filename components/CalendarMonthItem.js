@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 import LunarCalendar from 'lunar-calendar'
 
 class CalendarMonthItem extends Component {
+  handleClick() {
+    const { d, onClick } = this.props
+    if (onClick) onClick(d)
+  }
   render() {
     const { date, visibility, gray, current, hasArrangement } = this.props
     const style = {
@@ -13,7 +17,7 @@ class CalendarMonthItem extends Component {
     const month = date.getMonth()
     const d = date.getDate()
     return (
-      <span style={Object.assign({}, styles.container, style)}>
+      <span style={Object.assign({}, styles.container, style)} onClick={this.handleClick.bind(this)}>
         <span style={Object.assign({}, styles.wrapper, current ? styles.current : {})}>
           <span style={styles.date}>{this.props.date.getDate()}</span>
           <span style={styles.lunar}>{LunarCalendar.solarToLunar(year, month + 1, d).lunarDayName}</span>

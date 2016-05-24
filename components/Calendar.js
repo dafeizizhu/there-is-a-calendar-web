@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 
 import CalendarYear from './CalendarYear'
 import CalendarMonth from './CalendarMonth'
+import CalendarDay from './CalendarDay'
 
 class Calendar extends Component {
   handleTodayClick() {
@@ -11,6 +12,10 @@ class Calendar extends Component {
   handleYearClick() {
     const { onYearClick } = this.props
     if (onYearClick) onYearClick()
+  }
+  handleMonthClick() {
+    const { onMonthClick, date } = this.props
+    if (onMonthClick) onMonthClick(date.getMonth())
   }
   render() {
     const { date, currentDate, style, type } = this.props
@@ -27,8 +32,13 @@ class Calendar extends Component {
       case 'month':
         c = <CalendarMonth date={date} currentDate={currentDate} 
           onPrevMonthClick={this.props.onPrevMonthClick}
-          onNextMonthClick={this.props.onNextMonthClick} /> 
+          onNextMonthClick={this.props.onNextMonthClick}
+          onDayClick={this.props.onDayClick} /> 
         y = <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleYearClick.bind(this)}>{date.getFullYear()}年</a></li>
+        break
+      case 'day':
+        c = <CalendarDay date={date} currentDate={currentDate} />
+        y = <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleMonthClick.bind(this)}>{date.getMonth() + 1}月</a></li>
         break
     }
     return (

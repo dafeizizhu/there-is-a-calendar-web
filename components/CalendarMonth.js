@@ -12,6 +12,10 @@ class CalendarMonth extends Component {
     const { onNextMonthClick } = this.props
     if (onNextMonthClick) { onNextMonthClick() }
   }
+  handleDayClick(d) {
+    const { onDayClick } = this.props
+    if (onDayClick) onDayClick(d)
+  }
   render() {
     const { date, currentDate } = this.props
     const year = date.getFullYear()
@@ -37,7 +41,7 @@ class CalendarMonth extends Component {
         days[row] = []
       }
       gray = count % 7 == 6 || count % 7 == 0
-      days[row].push(<span style={styles.day}><CalendarMonthItem date={new Date(year, month, i)} current={current && i == currentDate.getDate()} gray={gray} visibility={true} /></span>)
+      days[row].push(<span key={count} style={styles.day}><CalendarMonthItem date={new Date(year, month, i)} current={current && i == currentDate.getDate()} gray={gray} visibility={true} d={i} onClick={this.handleDayClick.bind(this)}/></span>)
       count++
     }
     for (i = new Date(year, month + 1, 1, -1).getDay(); i < 6; i++) {
