@@ -10,7 +10,7 @@ function date(state = new Date(), action) {
   }
 }
 
-function type(state = 'year', action) {
+function type(state = 'month', action) {
   switch(action.type) {
     case SET_TYPE:
       return action.ctype

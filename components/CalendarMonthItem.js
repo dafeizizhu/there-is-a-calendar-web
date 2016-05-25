@@ -8,7 +8,7 @@ class CalendarMonthItem extends Component {
     if (onClick) onClick(d)
   }
   render() {
-    const { date, visibility, gray, current, hasArrangement } = this.props
+    const { date, visibility, gray, current, selected, hasArrangement } = this.props
     const style = {
       visibility: visibility ? 'visible' : 'hidden',
       color: gray ? '#ccc' : ''
@@ -18,7 +18,7 @@ class CalendarMonthItem extends Component {
     const d = date.getDate()
     return (
       <span style={Object.assign({}, styles.container, style)} onClick={this.handleClick.bind(this)}>
-        <span style={Object.assign({}, styles.wrapper, current ? styles.current : {})}>
+        <span style={Object.assign({}, styles.wrapper, selected ? styles.selected : {}, current ? styles.current : {})}>
           <span style={styles.date}>{this.props.date.getDate()}</span>
           <span style={styles.lunar}>{LunarCalendar.solarToLunar(year, month + 1, d).lunarDayName}</span>
         </span>
@@ -60,6 +60,13 @@ const styles = {
     color: '#fff',
     borderRadius: '50%',
     background: 'red'
+  },
+  selected: {
+    width: '50px',
+    height: '50px',
+    color: '#fff',
+    borderRadius: '50%',
+    background: 'black'
   }
 }
 
