@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 
 import Splash from './modules/Splash'
 import Calendar from './modules/Calendar'
+import Profile from './modules/Profile'
 
 const rootElement = document.createElement('div')
 rootElement.id = 'root'
@@ -18,6 +19,7 @@ render(
   <Router history={hashHistory}>
     <Route path='/' component={Splash} />
     <Route path='/calendar' component={Calendar} />
+    <Route path='/profile' component={Profile} />
   </Router>,
   rootElement
 )

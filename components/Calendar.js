@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 
 import CalendarYear from './CalendarYear'
 import CalendarMonth from './CalendarMonth'
@@ -46,7 +47,10 @@ class Calendar extends Component {
       <div style={styles.root}>
         <ul style={styles.menu}>
           { y }
-          <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}>增加</li>
+          <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}>
+            <Link to='/profile'>我</Link>&nbsp;
+            <a>增加</a>
+          </li>
         </ul>
         <div style={styles.calendar}>{ c }</div>
         <ul style={styles.menu}>
