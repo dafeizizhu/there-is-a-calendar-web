@@ -1,21 +1,75 @@
 import React, { Component } from 'react'
-import { Provider } from 'react-redux'
+import { connect } from 'react-redux'
 
-import configureStore from '../configureStore'
-
-import CalendarContainer from '../containers/Calendar'
-import calendarApp from '../reducers/Calendar'
-
-const store = configureStore(calendarApp)
+import Calendar from '../components/Calendar'
+import { setDate, setType } from '../actions/Calendar'
 
 class CalendarModule extends Component {
+  handleTodayClick(type) {
+    const { dispatch } = this.props
+    const { date } = this.props.root.Calendar
+    dispatch(setDate(new Date()))
+    switch (type) {
+      case 'year':
+        if (new Date().getFullYear() == date.getFullYear()) {
+          dispatch(setType('month'))
+        }
+        break
+    }
+  }
+  handleYearClick() {
+    const { dispatch } = this.props
+    dispatch(setType('year'))
+  }
+  handlePrevYearClick() {
+    const { dispatch } = this.props
+    const { date } = this.props.root.Calendar
+    dispatch(setDate(new Date(date.getFullYear() - 1, 0, 1)))
+  }
+  handleNextYearClick() {
+    const { dispatch } = this.props
+    const { date } = this.props.root.Calendar
+    dispatch(setDate(new Date(date.getFullYear() + 1, 0, 1)))
+  }
+  handleMonthClick(key) {
+    const { dispatch } = this.props
+    const { date } = this.props.root.Calendar
+    dispatch(setDate(new Date(date.getFullYear(), key, 1)))
+    dispatch(setType('month'))
+  }
+  handlePrevMonthClick() {
+    const { dispatch } = this.props
+    const { date } = this.props.root.Calendar
+    dispatch(setDate(new Date(date.getFullYear(), date.getMonth() - 1, 1)))
+  }
+  handleNextMonthClick() {
+    const { dispatch } = this.props
+    const { date } = this.props.root.Calendar
+    dispatch(setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1)))
+  }
+  handleDayClick(d) {
+    const { dispatch } = this.props
+    const { date } = this.props.root.Calendar
+    dispatch(setDate(new Date(date.getFullYear(), date.getMonth(), d)))
+    dispatch(setType('day'))
+  }
   render() {
     return (
-      <Provider store={store}>
-        <CalendarContainer />
-      </Provider>
+      <div>
+        <Calendar
+          {...this.props.root.Calendar}
+          currentDate={new Date()}
+          onTodayClick={this.handleTodayClick.bind(this)}
+          onYearClick={this.handleYearClick.bind(this)}
+          onPrevYearClick={this.handlePrevYearClick.bind(this)}
+          onNextYearClick={this.handleNextYearClick.bind(this)} 
+          onMonthClick={this.handleMonthClick.bind(this)}
+          onPrevMonthClick={this.handlePrevMonthClick.bind(this)}
+          onNextMonthClick={this.handleNextMonthClick.bind(this)}
+          onDayClick={this.handleDayClick.bind(this)} />
+      </div>
     )
   }
 }
 
-export default CalendarModule
+export default connect(state => state)(CalendarModule)

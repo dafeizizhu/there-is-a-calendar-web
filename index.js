@@ -1,25 +1,35 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { Router, Route, hashHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+
+import reducers from './reducers'
 
 import Splash from './modules/Splash'
 import Calendar from './modules/Calendar'
 import Profile from './modules/Profile'
 
-const rootElement = document.createElement('div')
-rootElement.id = 'root'
-document.body.appendChild(rootElement)
+import configureStore from './configureStore'
 
-import { Router, Route, hashHistory } from 'react-router'
+const store = configureStore(reducers)
+const history = syncHistoryWithStore(hashHistory, store)
 
 // css reset
 require('./styles/reset.css')
 require('./styles/app.css')
 
+const rootElement = document.createElement('div')
+rootElement.id = 'root'
+document.body.appendChild(rootElement)
+
 render(
-  <Router history={hashHistory}>
-    <Route path='/' component={Splash} />
-    <Route path='/calendar' component={Calendar} />
-    <Route path='/profile' component={Profile} />
-  </Router>,
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path='/' component={Splash} />
+      <Route path='/calendar' component={Calendar} />
+      <Route path='/profile' component={Profile} />
+    </Router>
+  </Provider>,
   rootElement
 )
