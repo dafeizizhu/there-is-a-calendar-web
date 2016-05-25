@@ -61,7 +61,7 @@ class Calendar extends Component {
 const styles = {
   root: {
     fontFamily: '微软雅黑, sans-serif',
-    height: '100vh',
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
     MozUserSelect: 'none',
