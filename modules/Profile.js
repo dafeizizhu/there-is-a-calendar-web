@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-class Profile extends Component {
+import Profile from '../components/Profile'
+
+class ProfileModule extends Component {
   render() {
-    return <div>I am Profile</div>
+    return (
+      <Profile {...this.props.root.Profile} />
+    )
   }
 }
 
-export default Profile
+export default connect(state => state)(ProfileModule)

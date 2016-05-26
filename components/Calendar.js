@@ -48,7 +48,7 @@ class Calendar extends Component {
         <ul style={styles.menu}>
           { y }
           <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}>
-            <Link to='/profile'>我</Link>&nbsp;
+            <Link to='/profile'>我的</Link>&nbsp;
             <a>增加</a>
           </li>
         </ul>
