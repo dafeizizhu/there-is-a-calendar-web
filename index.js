@@ -9,6 +9,7 @@ import reducers from './reducers'
 import Splash from './modules/Splash'
 import Calendar from './modules/Calendar'
 import Profile from './modules/Profile'
+import SignIn from './modules/SignIn'
 
 import configureStore from './configureStore'
 
@@ -29,6 +30,7 @@ render(
       <Route path='/' component={Splash} />
       <Route path='/calendar' component={Calendar} />
       <Route path='/profile' component={Profile} />
+      <Route path='/signin' component={SignIn} />
     </Router>
   </Provider>,
   rootElement

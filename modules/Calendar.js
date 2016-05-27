@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { hashHistory } from 'react-router'
 
 import Calendar from '../components/Calendar'
 import { setDate, setType } from '../actions/Calendar'
@@ -53,6 +54,14 @@ class CalendarModule extends Component {
     dispatch(setDate(new Date(date.getFullYear(), date.getMonth(), d)))
     dispatch(setType('day'))
   }
+  handleMyClick() {
+    const { id } = this.props.root.Profile
+    if (id) {
+      hashHistory.push('/profile')
+    } else {
+      hashHistory.push('/signin')
+    }
+  }
   render() {
     return (
       <div>
@@ -66,7 +75,8 @@ class CalendarModule extends Component {
           onMonthClick={this.handleMonthClick.bind(this)}
           onPrevMonthClick={this.handlePrevMonthClick.bind(this)}
           onNextMonthClick={this.handleNextMonthClick.bind(this)}
-          onDayClick={this.handleDayClick.bind(this)} />
+          onDayClick={this.handleDayClick.bind(this)}
+          onMyClick={this.handleMyClick.bind(this)} />
       </div>
     )
   }
