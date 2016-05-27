@@ -18,6 +18,7 @@ const history = syncHistoryWithStore(hashHistory, store)
 // css reset
 require('./styles/reset.css')
 require('./styles/app.css')
+require('./styles/loader.css')
 
 const rootElement = document.createElement('div')
 rootElement.id = 'root'

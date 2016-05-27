@@ -19,9 +19,9 @@ function type(state = 'month', action) {
   }
 }
 
-const calendarApp = combineReducers({
+const Calendar = combineReducers({
   date,
   type
 })
 
-export default calendarApp
+export default Calendar

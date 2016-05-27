@@ -4,6 +4,8 @@ import { hashHistory } from 'react-router'
 
 import { fetchSignUp } from '../actions/SignIn'
 
+import Loader from './Loader'
+
 class SignIn extends Component {
   handleBackClick() {
     const { onBack } = this.props
@@ -21,20 +23,21 @@ class SignIn extends Component {
     // TODO
   }
   render() {
+    const { id, loading } = this.props
     const avatarThumb = <img style={styles.thumb} src={require('../images/default-avatar.jpg')} />
     const form  = (
       <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
         <input ref='name' style={styles.formItem} type='text' placeholder='输入您的用户名' required='required' />
         <input ref='password' style={styles.formItem} type='password' placeholder='输入您的密码' required='required' />
         <input style={styles.formItem} type='submit' value='登录' />
-        <input type='hidden' name='id' value={this.props.id} />
+        <input type='hidden' name='id' value={id} />
         <div style={styles.formItem}>
           <a style={styles.signUp} onClick={this.handleSingUpClick.bind(this)}>创建帐号</a>
         </div>
       </form>
     )
     const alreadySignIn = <div style={{fontSize: '16px'}}>您已登录！</div>
-    const content = this.props.id ? alreadySignIn : form
+    const content = id ? alreadySignIn : form
 
     return (
       <div style={styles.root}>
@@ -49,6 +52,7 @@ class SignIn extends Component {
             <div style={styles.content}>{ content }</div>
           </div>
         </div>
+        <Loader visibility={loading} />
       </div>
     )
   }

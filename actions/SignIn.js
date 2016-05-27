@@ -26,7 +26,7 @@ export function signIn(name, password) {
           id: 1,
           name: 'mockUser'
         })
-      }, 1000)
+      }, 2000)
     }).then(json => dispatch(recieveSignIn(json.id, json.name)))
   }
 }
