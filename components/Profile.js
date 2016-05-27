@@ -7,8 +7,17 @@ class Profile extends Component {
   }
   render() {
     const { avatar, name, id } = this.props
-    const avatarThumb = avatar ? <img src={avatar} /> : <img src={require('../images/default-avatar.jpg')} />
-    const loginForm  = ''
+    const avatarThumb = avatar ? <img style={styles.thumb} src={avatar} /> : <img style={styles.thumb} src={require('../images/default-avatar.jpg')} />
+    const loginForm  = (
+      <form style={styles.form}>
+        <input style={styles.formItem} type='text' placeholder='输入您的用户名' />
+        <input style={styles.formItem} type='password' placeholder='输入您的密码' />
+        <input style={styles.formItem} type='submit' value='登录' />
+        <div style={styles.formItem}>
+          <a style={styles.signUp}>创建帐号</a>
+        </div>
+      </form>
+    )
     const detail = ''
 
     return (
@@ -19,8 +28,10 @@ class Profile extends Component {
           </li>
         </ul>
         <div style={styles.profile}>
-          <div style={styles.avatar}>{ avatarThumb }</div>
-          <div style={styles.info}>{ id ? detail : loginForm }</div>
+          <div style={styles.wrapper}>
+            <div style={styles.avatar}>{ avatarThumb }</div>
+            <div style={styles.content}>{ id ? detail : loginForm }</div>
+          </div>
         </div>
       </div>
     )
@@ -42,7 +53,8 @@ const styles = {
     display: 'flex',
     backgroundColor: '#f7f7f7',
     boxSizing: 'border-box',
-    borderTop: '1px solid #dcdcdc'
+    borderTop: '1px solid #dcdcdc',
+    flex: 'none'
   },
   menuItem: {
     lineHeight: '50px',
@@ -54,6 +66,44 @@ const styles = {
   menuItemFirst: {
     paddingLeft: '20px',
     textAlign: 'left',
+  },
+  profile: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex'
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  avatar: {
+    borderRadius: '50%',
+    overflow: 'hidden',
+    flex: 1
+  },
+  thumb: {
+    width: '150px',
+    height: '150px'
+  },
+  content: {
+    flex: 1,
+    marginTop: '16px'
+  },
+  form: {
+    width: '256px',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  formItem: {
+    height: '44px',
+    fontSize: '16px',
+    marginBottom: '16px',
+    boxSizing: 'border-box',
+    padding: '0 8px',
+    textAlign: 'center'
   }
 }
 
