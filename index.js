@@ -6,7 +6,6 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import reducers from './reducers'
 
-import Splash from './modules/Splash'
 import Calendar from './modules/Calendar'
 import Profile from './modules/Profile'
 import SignIn from './modules/SignIn'
@@ -27,7 +26,7 @@ document.body.appendChild(rootElement)
 render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path='/' component={Splash} />
+      <Route path='/' component={Calendar} />
       <Route path='/calendar' component={Calendar} />
       <Route path='/profile' component={Profile} />
       <Route path='/signin' component={SignIn} />

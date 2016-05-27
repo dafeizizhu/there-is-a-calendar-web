@@ -33,6 +33,8 @@ class SignIn extends Component {
         </div>
       </form>
     )
+    const alreadySignIn = <div style={{fontSize: '16px'}}>您已登录！</div>
+    const content = this.props.id ? alreadySignIn : form
 
     return (
       <div style={styles.root}>
@@ -44,7 +46,7 @@ class SignIn extends Component {
         <div style={styles.profile}>
           <div style={styles.wrapper}>
             <div style={styles.avatar}>{ avatarThumb }</div>
-            <div style={styles.content}>{ form }</div>
+            <div style={styles.content}>{ content }</div>
           </div>
         </div>
       </div>
