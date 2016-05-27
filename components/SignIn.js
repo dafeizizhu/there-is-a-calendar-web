@@ -1,20 +1,35 @@
-
 import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 import { hashHistory } from 'react-router'
+
+import { fetchSignUp } from '../actions/SignIn'
 
 class SignIn extends Component {
   handleBackClick() {
-    hashHistory.goBack()
+    const { onBack } = this.props
+    if (onBack) onBack()
+  }
+  handleSubmit(e) {
+    e.preventDefault()
+
+    const name = findDOMNode(this.refs.name).value
+    const password = findDOMNode(this.refs.password).value
+    const { onSubmit } = this.props
+    if (onSubmit) onSubmit(name, password)
+  }
+  handleSingUpClick() {
+    // TODO
   }
   render() {
     const avatarThumb = <img style={styles.thumb} src={require('../images/default-avatar.jpg')} />
     const form  = (
-      <form style={styles.form}>
-        <input style={styles.formItem} type='text' placeholder='输入您的用户名' />
-        <input style={styles.formItem} type='password' placeholder='输入您的密码' />
+      <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
+        <input ref='name' style={styles.formItem} type='text' placeholder='输入您的用户名' required='required' />
+        <input ref='password' style={styles.formItem} type='password' placeholder='输入您的密码' required='required' />
         <input style={styles.formItem} type='submit' value='登录' />
+        <input type='hidden' name='id' value={this.props.id} />
         <div style={styles.formItem}>
-          <a style={styles.signUp}>创建帐号</a>
+          <a style={styles.signUp} onClick={this.handleSingUpClick.bind(this)}>创建帐号</a>
         </div>
       </form>
     )
