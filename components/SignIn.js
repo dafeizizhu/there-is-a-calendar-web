@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
-import { hashHistory } from 'react-router'
 
 import { fetchSignUp } from '../actions/SignIn'
 
@@ -16,11 +15,15 @@ class SignIn extends Component {
 
     const name = findDOMNode(this.refs.name).value
     const password = findDOMNode(this.refs.password).value
+
+    // TODO Validation
+
     const { onSubmit } = this.props
     if (onSubmit) onSubmit(name, password)
   }
   handleSingUpClick() {
-    // TODO
+    const { onSignUpClick } = this.props
+    if (onSignUpClick) onSignUpClick()
   }
   render() {
     const { id, loading } = this.props

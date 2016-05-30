@@ -9,6 +9,7 @@ import reducers from './reducers'
 import Calendar from './modules/Calendar'
 import Profile from './modules/Profile'
 import SignIn from './modules/SignIn'
+import SignUp from './modules/SignUp'
 
 import configureStore from './configureStore'
 
@@ -31,6 +32,7 @@ render(
       <Route path='/calendar' component={Calendar} />
       <Route path='/profile' component={Profile} />
       <Route path='/signin' component={SignIn} />
+      <Route path='/signup' component={SignUp} />
     </Router>
   </Provider>,
   rootElement

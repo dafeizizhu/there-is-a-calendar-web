@@ -13,6 +13,9 @@ class SignInModule extends Component {
     const { dispatch } = this.props
     dispatch(fetchSignIn(name, password))
   }
+  handleSignUpClick() {
+    hashHistory.push('/signup') 
+  }
   componentWillUpdate(nextProps) {
     const { id } = nextProps.root.Profile
     if (id) {
@@ -24,7 +27,8 @@ class SignInModule extends Component {
     return (
       <SignIn id={id} loading={loading}
         onBack={this.handleBack.bind(this)}
-        onSubmit={this.handleSubmit.bind(this)} />
+        onSubmit={this.handleSubmit.bind(this)}
+        onSignUpClick={this.handleSignUpClick.bind(this)} />
     )
   }
 }
