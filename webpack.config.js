@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: './index.js',
@@ -32,6 +33,10 @@ module.exports = {
       'process.env':{
         'NODE_ENV': JSON.stringify('production')
       }
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: 'build',
+      to: '../../there-is-a-calendar-server/public'
+    }])
   ]
 }
