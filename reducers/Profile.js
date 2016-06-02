@@ -9,7 +9,11 @@ function avatar(state = '', action) {
 function name(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
-      return action.user.name
+      if (action.user) {
+        return action.user.name
+      } else {
+        return state
+      }
     default:
       return state
   }
@@ -18,7 +22,11 @@ function name(state = '', action) {
 function id(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
-      return action.user.id
+      if (action.user) {
+        return action.user.id
+      } else {
+        return state
+      }
     default:
       return state
   }

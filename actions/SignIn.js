@@ -1,4 +1,5 @@
 import querystring from 'querystring'
+import fetch from 'isomorphic-fetch'
 
 export const REQUEST_SIGN_IN = 'REQUEST_SIGN_IN'
 export const RECIEVE_SIGN_IN = 'RECIEVE_SIGN_IN'
@@ -37,7 +38,7 @@ export function signIn(name, password) {
     .then(json => {
       dispatch(recieveSignIn(json.success, json.message, json.user))
     }).catch(err => {
-      dispatch(recieveSignIn(false, String(err), {id: '', name: ''}))
+      dispatch(recieveSignIn(false, String(err)))
     })
   }
 }
