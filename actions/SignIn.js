@@ -1,3 +1,5 @@
+import querystring from 'querystring'
+
 export const REQUEST_SIGN_IN = 'REQUEST_SIGN_IN'
 export const RECIEVE_SIGN_IN = 'RECIEVE_SIGN_IN'
 
@@ -9,25 +11,34 @@ export function requestSignIn(name, password) {
   }
 }
 
-export function recieveSignIn(id, name) {
+export function recieveSignIn(success, message, user) {
   return {
     type: RECIEVE_SIGN_IN,
-    id,
-    name
+    success,
+    message,
+    user
   }
 }
 
 export function signIn(name, password) {
   return dispatch => {
     dispatch(requestSignIn(name, password))
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          id: 1,
-          name: 'mockUser'
-        })
-      }, 2000)
-    }).then(json => dispatch(recieveSignIn(json.id, json.name)))
+    fetch('/api/sign-in', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: querystring.stringify({
+        name: name,
+        password: password
+      })
+    })
+    .then(response => response.json())
+    .then(json => {
+      dispatch(recieveSignIn(json.success, json.message, json.user))
+    }).catch(err => {
+      dispatch(recieveSignIn(false, String(err), {id: '', name: ''}))
+    })
   }
 }
 

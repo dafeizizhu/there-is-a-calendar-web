@@ -23,9 +23,9 @@ class SignInModule extends Component {
     }
   }
   render() {
-    const { id, loading } = this.props.root.Profile
+    const { id } = this.props.root.Profile
     return (
-      <SignIn id={id} loading={loading}
+      <SignIn id={id} {...this.props.root.SignIn} 
         onBack={this.handleBack.bind(this)}
         onSubmit={this.handleSubmit.bind(this)}
         onSignUpClick={this.handleSignUpClick.bind(this)} />

@@ -9,7 +9,7 @@ function avatar(state = '', action) {
 function name(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
-      return action.name
+      return action.user.name
     default:
       return state
   }
@@ -18,20 +18,9 @@ function name(state = '', action) {
 function id(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
-      return action.id
+      return action.user.id
     default:
       return state
-  }
-}
-
-function loading(state = false, action) {
-  switch(action.type) {
-    case REQUEST_SIGN_IN:
-      return true
-    case RECIEVE_SIGN_IN:
-      return false;
-    default:
-      return false;
   }
 }
 
@@ -39,7 +28,6 @@ const Profile = combineReducers({
   avatar,
   name,
   id,
-  loading
 })
 
 export default Profile

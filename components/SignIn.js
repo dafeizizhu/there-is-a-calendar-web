@@ -26,7 +26,7 @@ class SignIn extends Component {
     if (onSignUpClick) onSignUpClick()
   }
   render() {
-    const { id, loading } = this.props
+    const { id, loading, success, message } = this.props
     const avatarThumb = <img style={styles.thumb} src={require('../images/default-avatar.jpg')} />
     const form  = (
       <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
@@ -41,6 +41,11 @@ class SignIn extends Component {
     )
     const alreadySignIn = <div style={{fontSize: '16px'}}>您已登录！</div>
     const content = id ? alreadySignIn : form
+    const tip = success ? '' : (
+      <div style={Object.assign({}, styles.message, success ? styles.success : styles.error)}>
+        { message }
+      </div>
+    )
 
     return (
       <div style={styles.root}>
@@ -52,6 +57,7 @@ class SignIn extends Component {
         <div style={styles.profile}>
           <div style={styles.wrapper}>
             <div style={styles.avatar}>{ avatarThumb }</div>
+            <div style={styles.content}>{ loading ? '' : tip }</div>
             <div style={styles.content}>{ content }</div>
           </div>
         </div>
@@ -127,6 +133,16 @@ const styles = {
     boxSizing: 'border-box',
     padding: '0 8px',
     textAlign: 'center'
+  },
+  message: {
+    width: '256px',
+    fontSize: '16px'
+  },
+  success: {
+    color: 'green'
+  },
+  error: {
+    color: 'red'
   }
 }
 
