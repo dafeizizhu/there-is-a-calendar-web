@@ -4,6 +4,7 @@ import { hashHistory } from 'react-router'
 
 import SignIn from '../components/SignIn'
 import { fetchSignIn } from '../actions/SignIn'
+import { beginSignUp } from '../actions/SignUp'
 
 class SignInModule extends Component {
   handleBack() {
@@ -14,6 +15,8 @@ class SignInModule extends Component {
     dispatch(fetchSignIn(name, password))
   }
   handleSignUpClick() {
+    const { dispatch } = this.props
+    dispatch(beginSignUp())
     hashHistory.push('/signup') 
   }
   componentWillUpdate(nextProps) {
