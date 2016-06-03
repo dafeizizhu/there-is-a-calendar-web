@@ -30,6 +30,7 @@
     "webpack": "^1.13.1"
   },
   "dependencies": {
+    "babel-polyfill": "^6.9.1",
     "copy-webpack-plugin": "^3.0.1",
     "isomorphic-fetch": "^2.2.1",
     "lunar-calendar": "^0.1.4",
