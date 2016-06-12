@@ -20,15 +20,15 @@ class SignInModule extends Component {
     hashHistory.push('/signup') 
   }
   componentWillUpdate(nextProps) {
-    const { id } = nextProps.root.Profile
-    if (id) {
+    const { result } = nextProps.root.Profile
+    if (result) {
       hashHistory.push('/calendar')
     }
   }
   render() {
-    const { id } = this.props.root.Profile
+    const { result } = this.props.root.Profile
     return (
-      <SignIn id={id} {...this.props.root.SignIn} 
+      <SignIn id={result} {...this.props.root.SignIn} 
         onBack={this.handleBack.bind(this)}
         onSubmit={this.handleSubmit.bind(this)}
         onSignUpClick={this.handleSignUpClick.bind(this)} />

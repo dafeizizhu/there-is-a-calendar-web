@@ -29,7 +29,7 @@ document.body.appendChild(rootElement)
 
 // auth
 function requireAuth(nextState, replace) {
-  if (!store.getState().root.Profile.id) {
+  if (!store.getState().root.Profile.result) {
     replace({
       pathname: '/signin'
     })

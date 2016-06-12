@@ -55,12 +55,7 @@ class CalendarModule extends Component {
     dispatch(setType('day'))
   }
   handleMyClick() {
-    const { id } = this.props.root.Profile
-    if (id) {
-      hashHistory.push('/profile')
-    } else {
-      hashHistory.push('/signin')
-    }
+    hashHistory.push('/profile')
   }
   handleCalendarClick() {
     hashHistory.push('/profile/calendars')
