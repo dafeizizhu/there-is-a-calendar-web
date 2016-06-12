@@ -22,6 +22,10 @@ class Calendar extends Component {
     const { onMyClick } = this.props
     if (onMyClick) onMyClick()
   }
+  handleCalendarClick() {
+    const { onCalendarClick } = this.props
+    if (onCalendarClick) onCalendarClick()
+  }
   render() {
     const { date, currentDate, style, type } = this.props
     let c = (<div>No match type[{type}]!</div>),
@@ -59,7 +63,7 @@ class Calendar extends Component {
         <div style={styles.calendar}>{ c }</div>
         <ul style={styles.menu}>
           <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleTodayClick.bind(this)}>今天</a></li>
-          <li style={styles.menuItem}>日历</li>
+          <li style={styles.menuItem}><a onClick={this.handleCalendarClick.bind(this)}>日历</a></li>
           <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}>收件箱</li>
         </ul>
       </div>
