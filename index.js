@@ -12,6 +12,7 @@ import Profile from './modules/Profile'
 import SignIn from './modules/SignIn'
 import SignUp from './modules/SignUp'
 import ProfileCalendar from './modules/profile/Calendar'
+import ProfileCalendarNew from './modules/profile/CalendarNew'
 
 import configureStore from './configureStore'
 
@@ -30,7 +31,6 @@ document.body.appendChild(rootElement)
 // auth
 function requireAuth(nextState, replace) {
   if (!store.getState().root.Profile.result) {
-    console.log(nextState)
     replace({
       pathname: '/signin',
       query: {
@@ -47,6 +47,7 @@ render(
       <Route path='/calendar' component={Calendar} />
       <Route path='/profile' component={Profile} onEnter={requireAuth}/>
       <Route path='/profile/calendar' component={ProfileCalendar} onEnter={requireAuth} />
+      <Route path='/profile/calendar/new' component={ProfileCalendarNew} onEnter={requireAuth} />
       <Route path='/signin' component={SignIn} />
       <Route path='/signup' component={SignUp} />
     </Router>

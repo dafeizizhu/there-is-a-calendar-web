@@ -5,8 +5,12 @@ import { hashHistory } from 'react-router'
 import Calendar from '../../components/profile/Calendar'
 
 class CalendarModule extends Component {
+  handleAddClick() {
+    hashHistory.push('/profile/calendar/new')
+  }
   render() {
-    return <Calendar {...this.props.root.Profile} /> 
+    return <Calendar {...this.props.root.Profile} 
+      onAddClick={this.handleAddClick.bind(this)} /> 
   }
 }
 

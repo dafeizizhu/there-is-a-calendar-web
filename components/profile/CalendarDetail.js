@@ -1,28 +1,15 @@
 import React, { Component } from 'react'
 
-class Calendar extends Component {
-  handleAddClick() {
-    const { onAddClick } = this.props
-    if (onAddClick) onAddClick()
-  }
+class CalendarDetail extends Component {
   render() {
-    const { result, entities } = this.props
-    const calendars = entities.users[result].calendars.map(calendarId => {
-      const calendar = entities.calendars[calendarId]
-      return (
-        <li>{calendar.name}</li>
-      )
-    })
     return (
       <div style={styles.root}>
         <ul style={styles.menu}>
           <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a>返回</a></li>
           <li style={styles.menuItem}>日历</li>
-          <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}><a onClick={this.handleAddClick.bind(this)}>增加</a></li>
+          <li style={styles.menuItem}></li>
         </ul>
-        <div style={styles.content}>
-          <ul>{ calendars }</ul>
-        </div>
+        <div style={styles.content}>CalendarDetail</div>
       </div>
     )
   }
@@ -66,4 +53,4 @@ const styles = {
   }
 }
 
-export default Calendar
+export default CalendarDetail
