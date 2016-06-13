@@ -40,6 +40,15 @@ function requireAuth(nextState, replace) {
   }
 }
 
+// unauth
+function requireNotAuth(nextState, replace) {
+  if (store.getState().root.Profile.result) {
+    replace({
+      pathname: '/calendar'
+    })
+  }
+}
+
 render(
   <Provider store={store}>
     <Router history={hashHistory}>
@@ -48,8 +57,8 @@ render(
       <Route path='/profile' component={Profile} onEnter={requireAuth}/>
       <Route path='/profile/calendar' component={ProfileCalendar} onEnter={requireAuth} />
       <Route path='/profile/calendar/new' component={ProfileCalendarNew} onEnter={requireAuth} />
-      <Route path='/signin' component={SignIn} />
-      <Route path='/signup' component={SignUp} />
+      <Route path='/signin' component={SignIn} onEnter={requireNotAuth} />
+      <Route path='/signup' component={SignUp} onEnter={requireNotAuth} />
     </Router>
   </Provider>,
   rootElement
