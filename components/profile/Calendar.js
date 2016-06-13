@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Calendars extends Component {
+class Calendar extends Component {
   render() {
     return (
       <div style={styles.root}>
@@ -9,6 +9,9 @@ class Calendars extends Component {
           <li style={styles.menuItem}>日历</li>
           <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}><a>增加</a></li>
         </ul>
+        <div style={styles.content}>
+          List {this.props.result}
+        </div>
       </div>
     )
   }
@@ -45,7 +48,11 @@ const styles = {
   lastMenuItem: {
     paddingRight: '20px',
     textAlign: 'right',
+  },
+  content: {
+    flex: 1,
+    background: 'red'
   }
 }
 
-export default Calendars
+export default Calendar

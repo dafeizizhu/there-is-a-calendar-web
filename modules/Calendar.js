@@ -58,7 +58,7 @@ class CalendarModule extends Component {
     hashHistory.push('/profile')
   }
   handleCalendarClick() {
-    hashHistory.push('/profile/calendars')
+    hashHistory.push('/profile/calendar')
   }
   render() {
     return (

@@ -22,8 +22,12 @@ class SignInModule extends Component {
   componentWillUpdate(nextProps) {
     const { result } = nextProps.root.Profile
     if (result) {
-      hashHistory.push('/calendar')
+      hashHistory.push(this.nextPathname || '/calendar')
     }
+  }
+  constructor({ location }) {
+    super()
+    this.nextPathname = location.query.pathname
   }
   render() {
     const { result } = this.props.root.Profile
