@@ -41,6 +41,8 @@ class SignUp extends Component {
           <li style={Object.assign({}, styles.menuItem, styles.menuItemFirst)}>
             <a onClick={this.handleBackClick.bind(this)}>返回</a>
           </li>
+          <li style={styles.menuItem}></li>
+          <li style={styles.menuItem}></li>
         </ul>
         <div style={styles.content}>{ loading ? '' : tip }</div>
         <div style={styles.content}>{ form }</div>
@@ -49,64 +51,16 @@ class SignUp extends Component {
     )
   }
 }
-
-const styles = {
-  root: {
-    fontFamily: '微软雅黑, sans-serif',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    MozUserSelect: 'none',
-    WebkitUserSelect: 'none',
-    msUserSelect: 'none'
-  },
-  menu: {
-    height: '50px',
-    display: 'flex',
-    backgroundColor: '#f7f7f7',
-    boxSizing: 'border-box',
-    borderTop: '1px solid #dcdcdc',
-    flex: 'none'
-  },
-  menuItem: {
-    lineHeight: '50px',
-    fontSize: '20px',
-    color: 'red',
-    flex: 1,
-    textAlign: 'center'
-  },
-  menuItemFirst: {
-    paddingLeft: '20px',
-    textAlign: 'left',
-  },
-  form: {
-    width: '256px',
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  formItem: {
-    height: '44px',
-    fontSize: '16px',
-    marginBottom: '16px',
-    boxSizing: 'border-box',
-    padding: '0 8px',
-    textAlign: 'center'
-  },
+ 
+const styles = Object.assign({},
+  require('../styles/components/root'),
+  require('../styles/components/menu'), 
+  require('../styles/components/form'), {
   content: {
     paddingTop: '10px',
     display: 'flex',
     justifyContent: 'center'
-  },
-  message: {
-    width: '256px',
-    fontSize: '16px'
-  },
-  success: {
-    color: 'green'
-  },
-  error: {
-    color: 'red'
   }
-}
+})
 
 export default SignUp

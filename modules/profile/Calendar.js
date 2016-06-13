@@ -8,9 +8,13 @@ class CalendarModule extends Component {
   handleAddClick() {
     hashHistory.push('/profile/calendar/new')
   }
+  handleBackClick() {
+    hashHistory.goBack()
+  }
   render() {
     return <Calendar {...this.props.root.Profile} 
-      onAddClick={this.handleAddClick.bind(this)} /> 
+      onAddClick={this.handleAddClick.bind(this)} 
+      onBackClick={this.handleBackClick.bind(this)} /> 
   }
 }
 

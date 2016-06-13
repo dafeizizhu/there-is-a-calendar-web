@@ -43,70 +43,43 @@ class Calendar extends Component {
           onPrevMonthClick={this.props.onPrevMonthClick}
           onNextMonthClick={this.props.onNextMonthClick}
           onDayClick={this.props.onDayClick} /> 
-        y = <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleYearClick.bind(this)}>{date.getFullYear()}年</a></li>
+        y = <li style={Object.assign({}, styles.menuItem, styles.menuItemFirst)}><a onClick={this.handleYearClick.bind(this)}>{date.getFullYear()}年</a></li>
         break
       case 'day':
         c = <CalendarDay date={date} currentDate={currentDate} 
           onDayClick={this.props.onDayClick} />
-        y = <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleMonthClick.bind(this)}>{date.getMonth() + 1}月</a></li>
+        y = <li style={Object.assign({}, styles.menuItem, styles.menuItemFirst)}><a onClick={this.handleMonthClick.bind(this)}>{date.getMonth() + 1}月</a></li>
         break
     }
     return (
       <div style={styles.root}>
         <ul style={styles.menu}>
           { y }
-          <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}>
+          <li style={Object.assign({}, styles.menuItem, styles.menuItemLast)}>
             <a onClick={this.handleMyClick.bind(this)}>我的</a>&nbsp;
             <a>增加</a>
           </li>
         </ul>
         <div style={styles.calendar}>{ c }</div>
         <ul style={styles.menu}>
-          <li style={Object.assign({}, styles.menuItem, styles.firstMenuItem)}><a onClick={this.handleTodayClick.bind(this)}>今天</a></li>
+          <li style={Object.assign({}, styles.menuItem, styles.menuItemFirst)}><a onClick={this.handleTodayClick.bind(this)}>今天</a></li>
           <li style={styles.menuItem}><a onClick={this.handleCalendarClick.bind(this)}>日历</a></li>
-          <li style={Object.assign({}, styles.menuItem, styles.lastMenuItem)}>收件箱</li>
+          <li style={Object.assign({}, styles.menuItem, styles.menuItemLast)}>收件箱</li>
         </ul>
       </div>
     )
   }
 }
 
-const styles = {
-  root: {
-    fontFamily: '微软雅黑, sans-serif',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    MozUserSelect: 'none',
-    WebkitUserSelect: 'none',
-    msUserSelect: 'none'
-  },
-  menu: {
-    height: '50px',
-    display: 'flex',
-    backgroundColor: '#f7f7f7',
-    boxSizing: 'border-box',
-    borderTop: '1px solid #dcdcdc'
-  },
-  menuItem: {
-    lineHeight: '50px',
-    fontSize: '20px',
-    color: 'red',
-    flex: 1,
-    textAlign: 'center'
-  },
-  firstMenuItem: {
-    paddingLeft: '20px',
-    textAlign: 'left',
-  },
-  lastMenuItem: {
-    paddingRight: '20px',
-    textAlign: 'right',
-  },
+const styles = Object.assign({},
+  require('../styles/components/root'),
+  require('../styles/components/menu'), {
   calendar: {
     flex: 1,
     display: 'flex'
   }
-}
+})
+
+console.log(styles)
 
 export default Calendar
