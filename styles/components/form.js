@@ -21,5 +21,10 @@ module.exports = {
   },
   error: {
     color: 'red'
-  } 
+  },
+  formFieldsetLabel: {
+    fontSize: '16px',
+    height: '24px',
+    lineHeight: '24px'
+  }
 }

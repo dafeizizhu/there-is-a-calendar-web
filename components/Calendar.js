@@ -80,6 +80,4 @@ const styles = Object.assign({},
   }
 })
 
-console.log(styles)
-
 export default Calendar

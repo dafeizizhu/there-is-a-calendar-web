@@ -54,7 +54,7 @@ class SignIn extends Component {
             <a onClick={this.handleBackClick.bind(this)}>返回</a>
           </li>
           <li style={styles.menuItem}>登入</li>
-          <li style={styles.menuItem}></li>
+          <li style={Object.assign({}, styles.menuItem, styles.menuItemLast)}></li>
         </ul>
         <div style={styles.profile}>
           <div style={styles.wrapper}>

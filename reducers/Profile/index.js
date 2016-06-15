@@ -5,6 +5,7 @@ import { REQUEST_SIGN_IN, RECIEVE_SIGN_IN } from '../../actions/SignIn'
 import user from './user'
 import calendar from './calendar'
 import event from './event'
+import calendarNew from './calendarNew'
 
 function result(state = '', action) {
   switch(action.type) {
@@ -95,7 +96,8 @@ const entities = combineReducers({
 
 const Profile = combineReducers({
   result,
-  entities
+  entities,
+  calendarNew
 })
 
 export default Profile
