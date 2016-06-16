@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux'
 
 import { REQUEST_SIGN_IN, RECIEVE_SIGN_IN } from '../../actions/SignIn'
+import { RECIEVE_CALENDAR_NEW } from '../../actions/profile/CalendarNew'
 
-import user from './user'
-import calendar from './calendar'
-import event from './event'
-import calendarNew from './calendarNew'
+import user from './User'
+import calendar from './Calendar'
+import event from './Event'
+import calendarNew from './CalendarNew'
 
 function result(state = '', action) {
   switch(action.type) {
@@ -33,6 +34,14 @@ function users(state = {}, action) {
       } else {
         return state
       }
+    case RECIEVE_CALENDAR_NEW:
+      if (action.calendar) {
+        return Object.assign({}, state, {
+          [action.calendar.user]: user(state[action.calendar.user], action)
+        })
+      } else {
+        return state
+      }
     default:
       return state
   }
@@ -53,6 +62,19 @@ function calendars(state = {}, action) {
           })
         })
         return _calendars
+      } else {
+        return state
+      }
+    case RECIEVE_CALENDAR_NEW:
+      if (action.calendar) {
+        return Object.assign({}, state, {
+          [action.calendar.id]: {
+            color: action.calendar.color,
+            events: [],
+            id: action.calendar.id,
+            name: action.calendar.name
+          }
+        })
       } else {
         return state
       }

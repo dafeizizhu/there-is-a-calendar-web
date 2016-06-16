@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
-import { fetchSignUp } from '../actions/SignIn'
-
 import Loader from './Loader'
 
 class SignIn extends Component {

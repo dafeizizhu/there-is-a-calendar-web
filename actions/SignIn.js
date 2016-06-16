@@ -25,6 +25,7 @@ export function signIn(name, password) {
   return dispatch => {
     dispatch(requestSignIn(name, password))
     fetch('/api/sign-in', {
+      credentials: 'include',
       method: 'POST',
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"

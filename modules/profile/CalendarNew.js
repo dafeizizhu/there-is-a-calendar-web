@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router'
 
 import CalendarDetail from '../../components/profile/CalendarDetail'
 
-import { changeColor } from '../../actions/profile/CalendarNew'
+import { changeColor, fetchCalendarNew } from '../../actions/profile/CalendarNew'
 
 class CalendarNewModule extends Component {
   handleBackClick() {
@@ -17,10 +17,22 @@ class CalendarNewModule extends Component {
       dispatch(changeColor(c))
     }
   }
+  handleSubmit(n, c) {
+    const { dispatch } = this.props
+    dispatch(fetchCalendarNew(n, c))
+  }
+  componentWillUpdate(nextProps) {
+    const { loading, success } = nextProps.root.Profile.calendarNew
+    const { pathname } = nextProps.routing.locationBeforeTransitions
+    if (!loading && success && pathname != '/profile/calendar') {
+      setTimeout(() => hashHistory.replace('/profile/calendar'), 1000)
+    }
+  }
   render() {
     return <CalendarDetail {...this.props.root.Profile.calendarNew}
       onBackClick={this.handleBackClick.bind(this)}
-      onColorClick={this.handleColorClick.bind(this)} />
+      onColorClick={this.handleColorClick.bind(this)}
+      onSubmit={this.handleSubmit.bind(this)} />
   }
 }
 
