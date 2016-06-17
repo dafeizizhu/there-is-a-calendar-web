@@ -4,7 +4,8 @@ module.exports = {
     display: 'flex',
     backgroundColor: '#f7f7f7',
     boxSizing: 'border-box',
-    borderTop: '1px solid #dcdcdc'
+    borderTop: '1px solid #dcdcdc',
+    flex: 'none'
   },
   menuItem: {
     lineHeight: '50px',

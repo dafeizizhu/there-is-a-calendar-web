@@ -1,5 +1,19 @@
 import React, { Component } from 'react'
 
+import ListView from '../common/ListView'
+
+class CalendarItem extends Component {
+  render() {
+    const { item } = this.props
+    return (
+      <div style={styles.calendarItem}>
+        <span style={Object.assign({}, styles.colorIcon, { backgroundColor: item.color })}></span>
+        <span style={styles.name}>{item.name}</span>
+      </div>
+    )
+  }
+}
+
 class Calendar extends Component {
   handleBackClick() {
     const { onBackClick } = this.props
@@ -11,12 +25,8 @@ class Calendar extends Component {
   }
   render() {
     const { result, entities } = this.props
-    const calendars = entities.users[result].calendars.map(calendarId => {
-      const calendar = entities.calendars[calendarId]
-      return (
-        <li>{calendar.name}</li>
-      )
-    })
+    const keys = entities.users[result].calendars
+    const data = entities.calendars
     return (
       <div style={styles.root}>
         <ul style={styles.menu}>
@@ -25,7 +35,7 @@ class Calendar extends Component {
           <li style={Object.assign({}, styles.menuItem, styles.menuItemLast)}><a onClick={this.handleAddClick.bind(this)}>增加</a></li>
         </ul>
         <div style={styles.content}>
-          <ul>{ calendars }</ul>
+          <ListView keys={keys} data={data} renderItem={(item) => <CalendarItem item={item} />} />
         </div>
       </div>
     )
@@ -37,7 +47,28 @@ const styles = Object.assign({},
   require('../../styles/components/menu'), {
   content: {
     flex: 1,
-    background: 'rgba(255, 0, 0, .5)' 
+    overflowY: 'scroll'
+  },
+  calendarItem: {
+    display: 'flex',
+    height: '40px',
+    borderBottom: '1px solid #ccc',
+    backgroundColor: 'white',
+    alignItems: 'center'
+  },
+  colorIcon: {
+    display: 'inline-block',
+    width: '8px',
+    height: '8px',
+    verticalAlign: 'center',
+    borderRadius: '50%',
+    marginLeft: '16px',
+    marginRight: '16px',
+    flex: 'none'
+  },
+  name: {
+    flex: 1,
+    fontSize: '18px'
   }
 })
 
