@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import { REQUEST_SIGN_IN, RECIEVE_SIGN_IN } from '../../actions/SignIn'
 import { RECIEVE_CALENDAR_NEW } from '../../actions/profile/CalendarNew'
+import { RECIEVE_REMOVE_CALENDAR } from '../../actions/profile/Calendar'
 
 import user from './User'
 import calendar from './Calendar'
@@ -35,6 +36,7 @@ function users(state = {}, action) {
         return state
       }
     case RECIEVE_CALENDAR_NEW:
+    case RECIEVE_REMOVE_CALENDAR:
       if (action.calendar) {
         return Object.assign({}, state, {
           [action.calendar.user]: user(state[action.calendar.user], action)

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import { REQUEST_SIGN_IN, RECIEVE_SIGN_IN } from '../../actions/SignIn'
 import { RECIEVE_CALENDAR_NEW } from '../../actions/profile/CalendarNew'
+import { RECIEVE_REMOVE_CALENDAR } from '../../actions/profile/Calendar'
 
 function avatar(state = '', action) {
   return state
@@ -43,8 +44,15 @@ function calendars(state = [], action) {
       }
     case RECIEVE_CALENDAR_NEW:
       if (action.calendar) {
-        console.log('action.calendar.id', action.calendar.id)
         return state.concat([action.calendar.id])
+      } else {
+        return state
+      }
+    case RECIEVE_REMOVE_CALENDAR:
+      if (action.calendar) {
+        const _state = state.concat()
+        _state.splice(state.indexOf(action.calendar.id), 1)
+        return _state
       } else {
         return state
       }

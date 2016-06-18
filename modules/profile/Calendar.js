@@ -5,6 +5,7 @@ import { hashHistory } from 'react-router'
 import Calendar from '../../components/profile/Calendar'
 
 import { beginCalendarNew } from '../../actions/profile/CalendarNew'
+import { fetchRemoveCalendar } from '../../actions/profile/Calendar'
 
 class CalendarModule extends Component {
   handleAddClick() {
@@ -15,10 +16,19 @@ class CalendarModule extends Component {
   handleBackClick() {
     hashHistory.goBack()
   }
+  handleEditClick(key) {
+    console.log('module edit click', key)
+  }
+  handleRemoveClick(key) {
+    const { dispatch } = this.props
+    dispatch(fetchRemoveCalendar(key))
+  }
   render() {
     return <Calendar {...this.props.root.Profile} 
       onAddClick={this.handleAddClick.bind(this)} 
-      onBackClick={this.handleBackClick.bind(this)} /> 
+      onBackClick={this.handleBackClick.bind(this)} 
+      onEditClick={this.handleEditClick.bind(this)}
+      onRemoveClick={this.handleRemoveClick.bind(this)} /> 
   }
 }
 

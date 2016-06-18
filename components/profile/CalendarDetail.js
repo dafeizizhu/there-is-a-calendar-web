@@ -55,6 +55,7 @@ class CalendarDetail extends Component {
             <input style={styles.formItem} type='submit' value='完成' />
           </form> 
         </div>
+        <Loader visibility={loading} />
       </div>
     )
   }

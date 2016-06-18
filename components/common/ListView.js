@@ -4,10 +4,12 @@ import ListViewItem from './ListViewItem'
 
 class ListView extends Component {
   handleEditClick(key) {
+    this.refs['item_' + key].reset()
     const { onEditClick } = this.props
     if (onEditClick) onEditClick(key)
   }
   handleRemoveClick(key) {
+    this.refs['item_' + key].reset()
     const { onRemoveClick } = this.props
     if (onRemoveClick) onRemoveClick(key)
   }
@@ -15,7 +17,7 @@ class ListView extends Component {
     const { keys, data, renderItem } = this.props
     const list = keys.map((key) => (
       <li key={key} style={styles.item}>
-        <ListViewItem item={data[key]} renderItem={renderItem} />
+        <ListViewItem item={data[key]} renderItem={renderItem} ref={'item_' + key}/>
         <div style={styles.menu}>
           <a style={Object.assign({}, styles.menuItem, {backgroundColor: 'orange'})} onClick={this.handleEditClick.bind(this, key)}>编辑</a>
           <a style={Object.assign({}, styles.menuItem, {backgroundColor: 'red'})} onClick={this.handleRemoveClick.bind(this, key)}>删除</a>

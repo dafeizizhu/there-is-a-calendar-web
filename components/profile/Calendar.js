@@ -24,10 +24,12 @@ class Calendar extends Component {
     if (onAddClick) onAddClick()
   }
   handleEditClick(key) {
-    console.log('edit', key)
+    const { onEditClick } = this.props
+    if (onEditClick) onEditClick(key)
   }
   handleRemoveClick(key) {
-    console.log('remove', key)
+    const { onRemoveClick } = this.props
+    if (onRemoveClick) onRemoveClick(key)
   }
   render() {
     const { result, entities } = this.props

@@ -45,6 +45,10 @@ class ListViewItem extends Component {
       </div>
     )
   }
+  reset() {
+    this.delta = 0
+    findDOMNode(this.refs.item).style.transform = 'translateX(0px)'
+  }
 }
 
 const styles = {
