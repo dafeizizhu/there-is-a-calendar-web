@@ -23,6 +23,12 @@ class Calendar extends Component {
     const { onAddClick } = this.props
     if (onAddClick) onAddClick()
   }
+  handleEditClick(key) {
+    console.log('edit', key)
+  }
+  handleRemoveClick(key) {
+    console.log('remove', key)
+  }
   render() {
     const { result, entities } = this.props
     const keys = entities.users[result].calendars
@@ -35,7 +41,9 @@ class Calendar extends Component {
           <li style={Object.assign({}, styles.menuItem, styles.menuItemLast)}><a onClick={this.handleAddClick.bind(this)}>增加</a></li>
         </ul>
         <div style={styles.content}>
-          <ListView keys={keys} data={data} renderItem={(item) => <CalendarItem item={item} />} />
+          <ListView keys={keys} data={data} renderItem={(item) => <CalendarItem item={item} />} 
+            onEditClick={this.handleEditClick.bind(this)}
+            onRemoveClick={this.handleRemoveClick.bind(this)} />
         </div>
       </div>
     )
