@@ -42,7 +42,7 @@ export function recieveCalendarNew(success, message, calendar) {
 export function calendarNew(n, c) {
   return dispatch => {
     dispatch(requestCalendarNew(n, c))
-    fetch('/api/private/calendar', {
+    fetch('/api/private/profile/calendar', {
       credentials: 'include',
       method: 'POST',
       headers: {
