@@ -28,8 +28,12 @@ class CalendarDetail extends Component {
     const { onColorClick } = this.props
     if (onColorClick) onColorClick(color)
   }
+  handleNameChange(evt) {
+    const { onNameChange } = this.props
+    if (onNameChange) onNameChange(evt.target.value)
+  }
   render() {
-    const { name, color, success, message, loading } = this.props
+    const { id, name, color, success, message, loading } = this.props
     const tip = loading ? '' : <div style={Object.assign({}, styles.message, success ? styles.success : styles.error)}>{ message }</div>
     return (
       <div style={styles.root}>
@@ -41,7 +45,8 @@ class CalendarDetail extends Component {
         <div style={styles.content}>
           <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
             <div style={{ marginBottom: '16px' }}>{ tip }</div>
-            <input ref='name' style={styles.formItem} type='text' placeholder='日历名称' required='required' />
+            <input ref='id' type='hidden' value={id} />
+            <input ref='name' style={styles.formItem} type='text' placeholder='日历名称' required='required' value={name} onChange={this.handleNameChange.bind(this)} />
             <fieldset style={styles.formFieldset}>
               <label style={styles.formFieldsetLabel}>颜色</label>
               <ul>{ this.colors.map((c) => (

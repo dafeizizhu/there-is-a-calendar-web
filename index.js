@@ -13,6 +13,7 @@ import SignIn from './modules/SignIn'
 import SignUp from './modules/SignUp'
 import ProfileCalendar from './modules/profile/Calendar'
 import ProfileCalendarNew from './modules/profile/CalendarNew'
+import ProfileCalendarEdit from './modules/profile/CalendarEdit'
 
 import configureStore from './configureStore'
 
@@ -57,6 +58,7 @@ render(
       <Route path='/profile' component={Profile} onEnter={requireAuth}/>
       <Route path='/profile/calendar' component={ProfileCalendar} onEnter={requireAuth} />
       <Route path='/profile/calendar/new' component={ProfileCalendarNew} onEnter={requireAuth} />
+      <Route path='/profile/calendar/edit' component={ProfileCalendarEdit} onEnter={requireAuth} />
       <Route path='/signin' component={SignIn} onEnter={requireNotAuth} />
       <Route path='/signup' component={SignUp} onEnter={requireNotAuth} />
     </Router>

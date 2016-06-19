@@ -10,6 +10,15 @@ export function changeColor(color) {
   }
 }
 
+export const CHANGE_NAME = 'CHANGE_NAME'
+
+export function changeName(name) {
+  return {
+    type: CHANGE_NAME,
+    name
+  }
+}
+
 export const BEGIN_CALENDAR_NEW = 'BEGIN_CALENDAR_NEW'
 
 export function beginCalendarNew() {

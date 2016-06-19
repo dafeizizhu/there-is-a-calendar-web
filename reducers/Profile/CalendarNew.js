@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import {
   CHANGE_COLOR,
+  CHANGE_NAME,
   BEGIN_CALENDAR_NEW,
   REQUEST_CALENDAR_NEW,
   RECIEVE_CALENDAR_NEW
@@ -11,6 +12,8 @@ function name(state = '', action) {
   switch(action.type) {
     case BEGIN_CALENDAR_NEW:
       return ''
+    case CHANGE_NAME:
+      return action.name
     default:
       return state
   }

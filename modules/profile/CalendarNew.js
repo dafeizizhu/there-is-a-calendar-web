@@ -4,7 +4,11 @@ import { hashHistory } from 'react-router'
 
 import CalendarDetail from '../../components/profile/CalendarDetail'
 
-import { changeColor, fetchCalendarNew } from '../../actions/profile/CalendarNew'
+import {
+  changeColor,
+  changeName,
+  fetchCalendarNew
+} from '../../actions/profile/CalendarNew'
 
 class CalendarNewModule extends Component {
   handleBackClick() {
@@ -28,11 +32,16 @@ class CalendarNewModule extends Component {
       setTimeout(() => hashHistory.replace('/profile/calendar'), 1000)
     }
   }
+  handleNameChange(name) {
+    const { dispatch } = this.props
+    dispatch(changeName(name))
+  }
   render() {
     return <CalendarDetail {...this.props.root.Profile.calendarNew}
       onBackClick={this.handleBackClick.bind(this)}
       onColorClick={this.handleColorClick.bind(this)}
-      onSubmit={this.handleSubmit.bind(this)} />
+      onSubmit={this.handleSubmit.bind(this)} 
+      onNameChange={this.handleNameChange.bind(this)} />
   }
 }
 

@@ -8,6 +8,7 @@ import user from './User'
 import calendar from './Calendar'
 import event from './Event'
 import calendarNew from './CalendarNew'
+import calendarEdit from './CalendarEdit'
 
 function result(state = '', action) {
   switch(action.type) {
@@ -121,7 +122,8 @@ const entities = combineReducers({
 const Profile = combineReducers({
   result,
   entities,
-  calendarNew
+  calendarNew,
+  calendarEdit
 })
 
 export default Profile
