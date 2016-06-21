@@ -18,11 +18,12 @@ class CalendarDetail extends Component {
   handleSubmit(evt) {
     evt.preventDefault()
 
+    const id = findDOMNode(this.refs.id).value
     const name = findDOMNode(this.refs.name).value
     const { color } = this.props
 
     const { onSubmit } = this.props
-    if (onSubmit) onSubmit(name, color)
+    if (onSubmit) onSubmit(name, color, id)
   }
   handleColorClick(color) {
     const { onColorClick } = this.props
