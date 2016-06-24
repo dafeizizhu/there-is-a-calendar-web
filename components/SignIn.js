@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
-import Loader from './Loader'
+import Loader from './common/Loader'
 
 class SignIn extends Component {
   handleBackClick() {
