@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux'
 
 import { REQUEST_SIGN_IN, RECIEVE_SIGN_IN } from '../../actions/SignIn'
+import { RECIEVE_CALENDAR_NEW } from '../../actions/profile/CalendarNew'
+import { RECIEVE_CALENDAR_EDIT } from '../../actions/profile/CalendarEdit'
 
 function id(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case RECIEVE_CALENDAR_NEW:
+    case RECIEVE_CALENDAR_EDIT:
       return action.calendar.id
     default:
       return state
@@ -14,6 +18,8 @@ function id(state = '', action) {
 function name(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case RECIEVE_CALENDAR_NEW:
+    case RECIEVE_CALENDAR_EDIT:
       return action.calendar.name
     default:
       return state
@@ -23,6 +29,8 @@ function name(state = '', action) {
 function color(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case RECIEVE_CALENDAR_NEW:
+    case RECIEVE_CALENDAR_EDIT:
       return action.calendar.color
     default:
       return state

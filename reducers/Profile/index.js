@@ -3,6 +3,7 @@ import { combineReducers } from 'redux'
 import { REQUEST_SIGN_IN, RECIEVE_SIGN_IN } from '../../actions/SignIn'
 import { RECIEVE_CALENDAR_NEW } from '../../actions/profile/CalendarNew'
 import { RECIEVE_REMOVE_CALENDAR } from '../../actions/profile/Calendar'
+import { RECIEVE_CALENDAR_EDIT } from '../../actions/profile/CalendarEdit'
 
 import user from './User'
 import calendar from './Calendar'
@@ -69,14 +70,10 @@ function calendars(state = {}, action) {
         return state
       }
     case RECIEVE_CALENDAR_NEW:
+    case RECIEVE_CALENDAR_EDIT:
       if (action.calendar) {
         return Object.assign({}, state, {
-          [action.calendar.id]: {
-            color: action.calendar.color,
-            events: [],
-            id: action.calendar.id,
-            name: action.calendar.name
-          }
+          [action.calendar.id]: calendar(state[action.calendar.id], action)
         })
       } else {
         return state
