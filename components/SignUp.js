@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
 import Loader from './common/Loader'
+import Alert from './common/Alert'
 
 class SignUp extends Component {
   handleBackClick() {
@@ -20,6 +21,10 @@ class SignUp extends Component {
     const { onSubmit } = this.props
     if (onSubmit) onSubmit(name, password)
   }
+  handleAlertOK() {
+    const { onAlertOK } = this.props
+    if (onAlertOK) onAlertOK()
+  }
   render() {
     const { success, message, loading } = this.props
     const form = (
@@ -30,11 +35,6 @@ class SignUp extends Component {
         <input style={styles.formItem} type='submit' value='创建' disabled={ success ? 'disabled' : ''} />
       </form>
     )
-    const tip = (
-      <div style={Object.assign({}, styles.message, success ? styles.success : styles.error)}>
-        { message }
-      </div>
-    )
     return (
       <div style={styles.root}>
         <ul style={styles.menu}>
@@ -44,9 +44,9 @@ class SignUp extends Component {
           <li style={styles.menuItem}></li>
           <li style={styles.menuItem}></li>
         </ul>
-        <div style={styles.content}>{ loading ? '' : tip }</div>
         <div style={styles.content}>{ form }</div>
         <Loader visibility={loading} />
+        <Alert visibility={!loading && message} message={message} onOK={this.handleAlertOK.bind(this)} />
       </div>
     )
   }

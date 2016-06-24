@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router'
 
 import SignUp from '../components/SignUp'
 
-import { fetchSignUp } from '../actions/SignUp'
+import { fetchSignUp, resetSignUp } from '../actions/SignUp'
 
 class SignUpModule extends Component {
   handleBackClick() {
@@ -14,11 +14,21 @@ class SignUpModule extends Component {
     const { dispatch } = this.props
     dispatch(fetchSignUp(name, password))
   }
+  handleAlertOK() {
+    const { dispatch } = this.props
+    const { success } = this.props.root.SignUp
+    if (success) {
+      hashHistory.push('/signin')
+    } else {
+      dispatch(resetSignUp())
+    }
+  }
   render() {
     return (
       <SignUp {...this.props.root.SignUp} 
         onBackClick={this.handleBackClick.bind(this)}
-        onSubmit={this.handleSubmit.bind(this)} />
+        onSubmit={this.handleSubmit.bind(this)}
+        onAlertOK={this.handleAlertOK.bind(this)} />
     )
   }
 }

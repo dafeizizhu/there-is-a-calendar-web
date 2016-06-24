@@ -47,3 +47,11 @@ export function signIn(name, password) {
 export function fetchSignIn(name, password) {
   return dispatch => dispatch(signIn(name, password))
 }
+
+export const RESET_SIGN_IN = 'RESET_SIGN_IN'
+
+export function resetSignIn() {
+  return {
+    type: RESET_SIGN_IN
+  }
+}

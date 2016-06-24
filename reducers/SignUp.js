@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 import {
   REQUEST_SIGN_UP,
   RECIEVE_SIGN_UP,
-  BEGIN_SIGN_UP
+  BEGIN_SIGN_UP,
+  RESET_SIGN_UP
 } from '../actions/SignUp'
 
 function success(state = false, action) {
@@ -10,6 +11,7 @@ function success(state = false, action) {
     case RECIEVE_SIGN_UP:
       return action.success
     case BEGIN_SIGN_UP:
+    case RESET_SIGN_UP:
       return false
     default:
       return state
@@ -21,6 +23,7 @@ function message(state = '', action) {
     case RECIEVE_SIGN_UP:
       return action.message
     case BEGIN_SIGN_UP:
+    case RESET_SIGN_UP:
       return ''
     default:
       return state
@@ -32,6 +35,7 @@ function loading(state = false, action) {
     case REQUEST_SIGN_UP:
       return true
     case RECIEVE_SIGN_UP:
+    case RESET_SIGN_UP:
       return false
     default:
       return state

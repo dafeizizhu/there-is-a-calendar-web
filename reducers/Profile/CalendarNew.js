@@ -5,7 +5,8 @@ import {
   CHANGE_NAME,
   BEGIN_CALENDAR_NEW,
   REQUEST_CALENDAR_NEW,
-  RECIEVE_CALENDAR_NEW
+  RECIEVE_CALENDAR_NEW,
+  RESET_CALENDAR_NEW
 } from '../../actions/profile/CalendarNew'
 
 function name(state = '', action) {
@@ -35,6 +36,7 @@ function success(state = false, action) {
     case RECIEVE_CALENDAR_NEW:
       return action.success
     case BEGIN_CALENDAR_NEW:
+    case RESET_CALENDAR_NEW:
       return false
     default:
       return state
@@ -46,6 +48,7 @@ function message(state = '', action) {
     case RECIEVE_CALENDAR_NEW:
       return action.message
     case BEGIN_CALENDAR_NEW:
+    case RESET_CALENDAR_NEW:
       return ''
     default:
       return state
@@ -57,8 +60,8 @@ function loading(state = false, action) {
     case REQUEST_CALENDAR_NEW:
       return true
     case RECIEVE_CALENDAR_NEW:
-      return false
     case BEGIN_CALENDAR_NEW:
+    case RESET_CALENDAR_NEW:
       return false
     default:
       return state

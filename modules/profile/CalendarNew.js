@@ -7,7 +7,8 @@ import CalendarDetail from '../../components/profile/CalendarDetail'
 import {
   changeColor,
   changeName,
-  fetchCalendarNew
+  fetchCalendarNew,
+  resetCalendarNew,
 } from '../../actions/profile/CalendarNew'
 
 class CalendarNewModule extends Component {
@@ -25,23 +26,26 @@ class CalendarNewModule extends Component {
     const { dispatch } = this.props
     dispatch(fetchCalendarNew(n, c))
   }
-  componentWillUpdate(nextProps) {
-    const { loading, success } = nextProps.root.Profile.calendarNew
-    const { pathname } = nextProps.routing.locationBeforeTransitions
-    if (!loading && success && pathname != '/profile/calendar') {
-      setTimeout(() => hashHistory.replace('/profile/calendar'), 1000)
-    }
-  }
   handleNameChange(name) {
     const { dispatch } = this.props
     dispatch(changeName(name))
+  }
+  handleAlertOK() {
+    const { dispatch } = this.props
+    const { success } = this.props.root.Profile.calendarNew
+    if (success) {
+      hashHistory.goBack()
+    } else {
+      dispatch(resetCalendarNew())
+    }
   }
   render() {
     return <CalendarDetail {...this.props.root.Profile.calendarNew}
       onBackClick={this.handleBackClick.bind(this)}
       onColorClick={this.handleColorClick.bind(this)}
       onSubmit={this.handleSubmit.bind(this)} 
-      onNameChange={this.handleNameChange.bind(this)} />
+      onNameChange={this.handleNameChange.bind(this)}
+      onAlertOK={this.handleAlertOK.bind(this)} />
   }
 }
 

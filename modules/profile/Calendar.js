@@ -21,9 +21,7 @@ class CalendarModule extends Component {
     const { dispatch } = this.props
     const { calendars } = this.props.root.Profile.entities
     dispatch(beginCalendarEdit(calendars[key]))
-    hashHistory.push({
-      pathname: '/profile/calendar/edit'
-    })
+    hashHistory.push('/profile/calendar/edit')
   }
   handleRemoveClick(key) {
     const { dispatch } = this.props

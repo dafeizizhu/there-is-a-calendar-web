@@ -74,3 +74,11 @@ export function calendarEdit(id, name, color) {
 export function fetchCalendarEdit(id, name, color) {
   return dispatch => dispatch(calendarEdit(id, name, color))
 }
+
+export const RESET_CALENDAR_EDIT = 'RESET_CALENDAR_EDIT'
+
+export function resetCalendarEdit() {
+  return {
+    type: RESET_CALENDAR_EDIT
+  }
+}

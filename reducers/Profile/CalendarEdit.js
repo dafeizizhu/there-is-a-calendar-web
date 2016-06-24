@@ -4,7 +4,8 @@ import {
   CHANGE_NAME,
   BEGIN_CALENDAR_EDIT,
   REQUEST_CALENDAR_EDIT,
-  RECIEVE_CALENDAR_EDIT
+  RECIEVE_CALENDAR_EDIT,
+  RESET_CALENDAR_EDIT
 } from '../../actions/profile/CalendarEdit'
 
 function id(state = '', action) {
@@ -39,15 +40,40 @@ function color(state = '', action) {
 }
 
 function success(state = false, action) {
-  return state
+  switch(action.type) {
+    case RECIEVE_CALENDAR_EDIT:
+      return action.success
+    case BEGIN_CALENDAR_EDIT:
+    case RESET_CALENDAR_EDIT:
+      return false
+    default:
+      return state
+  }
 }
 
 function message(state = '', action) {
-  return state
+  switch(action.type) {
+    case RECIEVE_CALENDAR_EDIT:
+      return action.message
+    case BEGIN_CALENDAR_EDIT:
+    case RESET_CALENDAR_EDIT:
+      return ''
+    default:
+      return state
+  }
 }
 
 function loading(state = false, action) {
-  return state
+  switch(action.type) {
+    case REQUEST_CALENDAR_EDIT:
+      return true
+    case RECIEVE_CALENDAR_EDIT:
+    case BEGIN_CALENDAR_EDIT:
+    case RESET_CALENDAR_EDIT:
+      return false
+    default:
+      return state
+  }
 }
 
 const calendarEdit = combineReducers({

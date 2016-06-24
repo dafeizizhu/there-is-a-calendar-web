@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 
 import SignIn from '../components/SignIn'
-import { fetchSignIn } from '../actions/SignIn'
+import { fetchSignIn, resetSignIn } from '../actions/SignIn'
 import { beginSignUp } from '../actions/SignUp'
 
 class SignInModule extends Component {
@@ -29,13 +29,18 @@ class SignInModule extends Component {
     super()
     this.nextPathname = location.query.pathname
   }
+  handleAlertOK() {
+    const { dispatch } = this.props
+    dispatch(resetSignIn())
+  }
   render() {
     const { result } = this.props.root.Profile
     return (
       <SignIn id={result} {...this.props.root.SignIn} 
         onBack={this.handleBack.bind(this)}
         onSubmit={this.handleSubmit.bind(this)}
-        onSignUpClick={this.handleSignUpClick.bind(this)} />
+        onSignUpClick={this.handleSignUpClick.bind(this)}
+        onAlertOK={this.handleAlertOK.bind(this)} />
     )
   }
 }

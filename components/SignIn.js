@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
 import Loader from './common/Loader'
+import Alert from './common/Alert'
 
 class SignIn extends Component {
   handleBackClick() {
@@ -23,6 +24,10 @@ class SignIn extends Component {
     const { onSignUpClick } = this.props
     if (onSignUpClick) onSignUpClick()
   }
+  handleAlertOK() {
+    const { onAlertOK } = this.props
+    if (onAlertOK) onAlertOK()
+  }
   render() {
     const { id, loading, success, message } = this.props
     const avatarThumb = <img style={styles.thumb} src={require('../images/default-avatar.jpg')} />
@@ -39,11 +44,6 @@ class SignIn extends Component {
     )
     const alreadySignIn = <div style={{fontSize: '16px'}}>您已登录！</div>
     const content = id ? alreadySignIn : form
-    const tip = success ? '' : (
-      <div style={Object.assign({}, styles.message, success ? styles.success : styles.error)}>
-        { message }
-      </div>
-    )
 
     return (
       <div style={styles.root}>
@@ -57,11 +57,11 @@ class SignIn extends Component {
         <div style={styles.profile}>
           <div style={styles.wrapper}>
             <div style={styles.avatar}>{ avatarThumb }</div>
-            <div style={styles.content}>{ loading ? '' : tip }</div>
             <div style={styles.content}>{ content }</div>
           </div>
         </div>
         <Loader visibility={loading} />
+        <Alert visibility={!loading && !success && message} message={message} onOK={this.handleAlertOK.bind(this)} />
       </div>
     )
   }

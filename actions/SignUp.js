@@ -49,3 +49,11 @@ export function beginSignUp() {
     type: BEGIN_SIGN_UP
   }
 }
+
+export const RESET_SIGN_UP = 'RESET_SIGN_UP'
+
+export function resetSignUp() {
+  return {
+    type: RESET_SIGN_UP
+  }
+}

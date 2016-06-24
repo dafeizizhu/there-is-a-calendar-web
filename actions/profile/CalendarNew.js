@@ -72,3 +72,11 @@ export function calendarNew(n, c) {
 export function fetchCalendarNew(n, c) {
   return dispatch => dispatch(calendarNew(n, c))
 }
+
+export const RESET_CALENDAR_NEW = 'RESET_CALENDAR_NEW'
+
+export function resetCalendarNew() {
+  return {
+    type: RESET_CALENDAR_NEW
+  }
+}

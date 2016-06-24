@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
 import Loader from '../common/Loader'
+import Alert from '../common/Alert'
 
 class CalendarDetail extends Component {
   constructor() {
@@ -10,6 +11,9 @@ class CalendarDetail extends Component {
     this.colors.push({ name: '红色', key: 'red' })
     this.colors.push({ name: '橙色', key: 'orange' })
     this.colors.push({ name: '黄色', key: 'yellow' })
+    this.colors.push({ name: '绿色', key: 'green' })
+    this.colors.push({ name: '灰色', key: 'gray' })
+    this.colors.push({ name: '蓝色', key: 'blue' })
   }
   handleBackClick() {
     const { onBackClick } = this.props
@@ -33,9 +37,12 @@ class CalendarDetail extends Component {
     const { onNameChange } = this.props
     if (onNameChange) onNameChange(evt.target.value)
   }
+  handleAlertOK() {
+    const { onAlertOK } = this.props
+    if (onAlertOK) onAlertOK()
+  }
   render() {
     const { id, name, color, success, message, loading } = this.props
-    const tip = loading ? '' : <div style={Object.assign({}, styles.message, success ? styles.success : styles.error)}>{ message }</div>
     return (
       <div style={styles.root}>
         <ul style={styles.menu}>
@@ -45,7 +52,6 @@ class CalendarDetail extends Component {
         </ul>
         <div style={styles.content}>
           <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
-            <div style={{ marginBottom: '16px' }}>{ tip }</div>
             <input ref='id' type='hidden' value={id} />
             <input ref='name' style={styles.formItem} type='text' placeholder='日历名称' required='required' value={name} onChange={this.handleNameChange.bind(this)} />
             <fieldset style={styles.formFieldset}>
@@ -62,6 +68,7 @@ class CalendarDetail extends Component {
           </form> 
         </div>
         <Loader visibility={loading} />
+        <Alert visibility={!loading && message} message={message} onOK={this.handleAlertOK.bind(this)}/>
       </div>
     )
   }

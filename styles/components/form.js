@@ -12,16 +12,6 @@ module.exports = {
     padding: '0 8px',
     textAlign: 'center'
   },
-  message: {
-    width: '256px',
-    fontSize: '16px'
-  },
-  success: {
-    color: 'green'
-  },
-  error: {
-    color: 'red'
-  },
   formFieldset: {
     marginBottom: '16px'
   },
