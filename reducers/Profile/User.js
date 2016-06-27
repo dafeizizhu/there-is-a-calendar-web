@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
 import { REQUEST_SIGN_IN, RECIEVE_SIGN_IN } from '../../actions/SignIn'
+import { CHECK } from '../../actions/Check'
 import { RECIEVE_CALENDAR_NEW } from '../../actions/profile/CalendarNew'
 import { RECIEVE_REMOVE_CALENDAR } from '../../actions/profile/Calendar'
 
@@ -11,6 +12,7 @@ function avatar(state = '', action) {
 function name(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case CHECK:
       if (action.user) {
         return action.user.name
       } else {
@@ -24,6 +26,7 @@ function name(state = '', action) {
 function id(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case CHECK:
       if (action.user) {
         return action.user.id
       } else {
@@ -37,6 +40,7 @@ function id(state = '', action) {
 function calendars(state = [], action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case CHECK:
       if (action.user) {
         return action.user.calendars
       } else {

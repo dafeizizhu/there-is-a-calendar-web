@@ -15,7 +15,10 @@ import ProfileCalendar from './modules/profile/Calendar'
 import ProfileCalendarNew from './modules/profile/CalendarNew'
 import ProfileCalendarEdit from './modules/profile/CalendarEdit'
 
-import configureStore from './configureStore'
+import { check } from './actions/Check'
+
+import configureStore from './utils/configureStore'
+import fetchOriginState from './utils/fetchOriginState'
 
 const store = configureStore(reducers)
 const history = syncHistoryWithStore(hashHistory, store)
@@ -52,7 +55,7 @@ function requireNotAuth(nextState, replace) {
 
 render(
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={history}>
       <Route path='/' component={Calendar} />
       <Route path='/calendar' component={Calendar} />
       <Route path='/profile' component={Profile} onEnter={requireAuth}/>
@@ -65,3 +68,9 @@ render(
   </Provider>,
   rootElement
 )
+
+fetchOriginState().then(json => {
+  if (json.success) {
+    store.dispatch(check(json.user))
+  }
+})

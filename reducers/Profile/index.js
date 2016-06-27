@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
 import { REQUEST_SIGN_IN, RECIEVE_SIGN_IN } from '../../actions/SignIn'
+import { CHECK } from '../../actions/Check'
 import { RECIEVE_CALENDAR_NEW } from '../../actions/profile/CalendarNew'
 import { RECIEVE_REMOVE_CALENDAR } from '../../actions/profile/Calendar'
 import { RECIEVE_CALENDAR_EDIT } from '../../actions/profile/CalendarEdit'
@@ -14,6 +15,7 @@ import calendarEdit from './CalendarEdit'
 function result(state = '', action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case CHECK:
       if (action.user) {
         return action.user.result
       } else {
@@ -27,6 +29,7 @@ function result(state = '', action) {
 function users(state = {}, action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case CHECK:
       if (action.user) {
         return Object.assign({}, state, {
           [action.user.result]: user(state[action.user.result], {
@@ -54,6 +57,7 @@ function users(state = {}, action) {
 function calendars(state = {}, action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case CHECK:
       if (action.user) {
         var calendarIds = action.user.entities.users[action.user.result].calendars
         var _calendars = {}
@@ -86,6 +90,7 @@ function calendars(state = {}, action) {
 function events(state = {}, action) {
   switch(action.type) {
     case RECIEVE_SIGN_IN:
+    case CHECK:
       if (action.user) {
         var _events = {}
         var eventIds = []
