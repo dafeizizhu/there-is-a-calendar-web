@@ -26,6 +26,10 @@ class Calendar extends Component {
     const { onCalendarClick } = this.props
     if (onCalendarClick) onCalendarClick()
   }
+  handleAddClick() {
+    const { onAddClick } = this.props
+    if (onAddClick) onAddClick()
+  }
   render() {
     const { date, currentDate, style, type } = this.props
     let c = (<div>No match type[{type}]!</div>),
@@ -57,7 +61,7 @@ class Calendar extends Component {
           { y }
           <li style={Object.assign({}, styles.menuItem, styles.menuItemLast)}>
             <a onClick={this.handleMyClick.bind(this)}>我的</a>&nbsp;
-            <a>增加</a>
+            <a onClick={this.handleAddClick.bind(this)}>增加</a>
           </li>
         </ul>
         <div style={styles.calendar}>{ c }</div>

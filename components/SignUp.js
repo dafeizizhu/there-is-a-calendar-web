@@ -4,6 +4,8 @@ import { findDOMNode } from 'react-dom'
 import Loader from './common/Loader'
 import Alert from './common/Alert'
 
+import WEUIFormInput from './common/weui/form/Input'
+
 class SignUp extends Component {
   handleBackClick() {
     const { onBackClick } = this.props
@@ -27,24 +29,33 @@ class SignUp extends Component {
   }
   render() {
     const { success, message, loading } = this.props
-    const form = (
-      <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
-        <input ref='name' style={styles.formItem} type='text' placeholder='输入您的用户名' required='required' disabled={ success ? 'disabled' : ''}/>
-        <input ref='password' style={styles.formItem} type='password' placeholder='输入您的密码' required='required' disabled={ success ? 'disabled' : ''} />
-        <input ref='password2' style={styles.formItem} type='password' placeholder='确认您的密码' required='required' disabled={ success ? 'disabled' : ''} />
-        <input style={styles.formItem} type='submit' value='创建' disabled={ success ? 'disabled' : ''} />
-      </form>
-    )
     return (
       <div style={styles.root}>
         <ul style={styles.menu}>
           <li style={Object.assign({}, styles.menuItem, styles.menuItemFirst)}>
             <a onClick={this.handleBackClick.bind(this)}>返回</a>
           </li>
-          <li style={styles.menuItem}></li>
-          <li style={styles.menuItem}></li>
+          <li style={styles.menuItem}>创建帐号</li>
+          <li style={Object.assign({}, styles.menuItem, styles.menuItemLast)}></li>
         </ul>
-        <div style={styles.content}>{ form }</div>
+        <div style={styles.content}>
+          <form style={{flex: 1}} onSubmit={this.handleSubmit.bind(this)}>
+            <div className='weui_cells weui_cells_form'>
+              <WEUIFormInput label='用户名'>
+                <input ref='name' className='weui_input' type='text' required='required' placeholder='请输入用户名' />
+              </WEUIFormInput>
+              <WEUIFormInput label='密码'>
+                <input ref='password' className='weui_input' type='password' required='required' placeholder='请输入密码' />
+              </WEUIFormInput>
+              <WEUIFormInput label='确认密码'>
+                <input ref='password2' className='weui_input' type='password' required='required' placeholder='请确认密码' />
+              </WEUIFormInput>
+              <div className='weui_cell'>
+                <input className='weui_btn weui_btn_primary' type='submit' value='创建' />
+              </div>
+            </div>
+          </form>
+        </div>
         <Loader visibility={loading} />
         <Alert visibility={!loading && message} message={message} onOK={this.handleAlertOK.bind(this)} />
       </div>
@@ -54,8 +65,7 @@ class SignUp extends Component {
  
 const styles = Object.assign({},
   require('../styles/components/root'),
-  require('../styles/components/menu'), 
-  require('../styles/components/form'), {
+  require('../styles/components/menu'), {
   content: {
     paddingTop: '10px',
     display: 'flex',

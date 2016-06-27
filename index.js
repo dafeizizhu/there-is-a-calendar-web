@@ -14,6 +14,7 @@ import SignUp from './modules/SignUp'
 import ProfileCalendar from './modules/profile/Calendar'
 import ProfileCalendarNew from './modules/profile/CalendarNew'
 import ProfileCalendarEdit from './modules/profile/CalendarEdit'
+import ProfileEventNew from './modules/profile/EventNew'
 
 import { check } from './actions/Check'
 
@@ -27,6 +28,8 @@ const history = syncHistoryWithStore(hashHistory, store)
 require('./styles/reset.css')
 require('./styles/app.css')
 require('./styles/loader.css')
+require('./styles/weui/weui.min.css')
+require('./styles/weui/weui.yougerili.css')
 
 const rootElement = document.createElement('div')
 rootElement.id = 'root'
@@ -62,6 +65,7 @@ render(
       <Route path='/profile/calendar' component={ProfileCalendar} onEnter={requireAuth} />
       <Route path='/profile/calendar/new' component={ProfileCalendarNew} onEnter={requireAuth} />
       <Route path='/profile/calendar/edit' component={ProfileCalendarEdit} onEnter={requireAuth} />
+      <Route path='/profile/event/new' component={ProfileEventNew} onEnter={requireAuth} />
       <Route path='/signin' component={SignIn} onEnter={requireNotAuth} />
       <Route path='/signup' component={SignUp} onEnter={requireNotAuth} />
     </Router>

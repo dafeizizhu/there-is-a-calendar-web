@@ -1,0 +1,11 @@
+.weui_switch:checked {
+  border-color: red;
+  background-color: red;
+}
+.weui_btn_primary {
+  background-color: red;
+}
+.weui_btn_primary:not(.weui_btn_disabled):active {
+  color: hsla(0,0%,100%,.4);
+  background-color: red;
+}

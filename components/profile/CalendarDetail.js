@@ -4,6 +4,8 @@ import { findDOMNode } from 'react-dom'
 import Loader from '../common/Loader'
 import Alert from '../common/Alert'
 
+import WEUIFormInput from '../common/weui/form/Input'
+
 class CalendarDetail extends Component {
   constructor() {
     super()
@@ -51,21 +53,29 @@ class CalendarDetail extends Component {
           <li style={Object.assign({}, styles.menuItem, styles.menuItemLast)}></li>
         </ul>
         <div style={styles.content}>
-          <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
+          <form style={{flex: 1}} onSubmit={this.handleSubmit.bind(this)}>
             <input ref='id' type='hidden' value={id} />
-            <input ref='name' style={styles.formItem} type='text' placeholder='日历名称' required='required' value={name} onChange={this.handleNameChange.bind(this)} />
-            <fieldset style={styles.formFieldset}>
-              <label style={styles.formFieldsetLabel}>颜色</label>
-              <ul>{ this.colors.map((c) => (
-                <li key={c.key} style={styles.color} onClick={this.handleColorClick.bind(this, c.key)}>
+            <div className='weui_cells weui_cells_form'>
+              <WEUIFormInput label='日历名称'>
+                <input ref='name' className='weui_input' type='text' placeholder='请输入日历名称' required='required' value={name} onChange={this.handleNameChange.bind(this)} />
+              </WEUIFormInput>
+            </div>
+            <div className='weui_cells_title'>颜色</div>
+            <div className='weui_cells weui_cells_form'>
+              { this.colors.map((c) => (
+                <label key={c.key} style={styles.color} onClick={this.handleColorClick.bind(this, c.key)}>
                   <span style={Object.assign({}, styles.colorIcon, { backgroundColor: c.key })}></span>
                   <span style={{ flex: 1 }}>{c.name}</span>
                   <img style={Object.assign({}, styles.check, c.key == color ? styles.checked : {})} src={require('./checked.png')} />
-                </li>)
-              )}</ul>
-            </fieldset>
-            <input style={styles.formItem} type='submit' value='完成' />
-          </form> 
+                </label>)
+              )}
+            </div>
+            <div className='weui_cells weui_cells_form'>
+              <div className='weui_cell'>
+                <input className='weui_btn weui_btn_primary' type='submit' value='完成' />
+              </div>
+            </div>
+          </form>
         </div>
         <Loader visibility={loading} />
         <Alert visibility={!loading && message} message={message} onOK={this.handleAlertOK.bind(this)}/>
@@ -76,8 +86,7 @@ class CalendarDetail extends Component {
 
 const styles = Object.assign({},
   require('../../styles/components/root'),
-  require('../../styles/components/menu'), 
-  require('../../styles/components/form'), {
+  require('../../styles/components/menu'), {
   content: {
     flex: 1,
     display: 'flex',
@@ -87,10 +96,11 @@ const styles = Object.assign({},
   color: {
     height: '40px',
     lineHeight: '40px',
-    borderBottom: '1px solid #ccc',
+    borderBottom: '1px solid #d9d9d9',
     fontSize: '18px',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingRight: '10px'
   },
   colorIcon: {
     display: 'inline-block',

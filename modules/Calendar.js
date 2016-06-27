@@ -60,6 +60,9 @@ class CalendarModule extends Component {
   handleCalendarClick() {
     hashHistory.push('/profile/calendar')
   }
+  handleAddClick() {
+    hashHistory.push('/profile/event/new')
+  }
   render() {
     return (
       <div>
@@ -75,7 +78,8 @@ class CalendarModule extends Component {
           onNextMonthClick={this.handleNextMonthClick.bind(this)}
           onDayClick={this.handleDayClick.bind(this)}
           onMyClick={this.handleMyClick.bind(this)}
-          onCalendarClick={this.handleCalendarClick.bind(this)} />
+          onCalendarClick={this.handleCalendarClick.bind(this)} 
+          onAddClick={this.handleAddClick.bind(this)} />
       </div>
     )
   }
