@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { hashHistory } from 'react-router'
 
 import Calendar from '../components/Calendar'
+
 import { setDate, setType } from '../actions/Calendar'
+import { beginEventNew } from '../actions/profile/EventNew'
 
 class CalendarModule extends Component {
   handleTodayClick(type) {
@@ -61,6 +63,10 @@ class CalendarModule extends Component {
     hashHistory.push('/profile/calendar')
   }
   handleAddClick() {
+    const { dispatch } = this.props
+    const { result, entities } = this.props.root.Profile
+    const calendar = entities.users[result].calendars[1]
+    dispatch(beginEventNew(calendar))
     hashHistory.push('/profile/event/new')
   }
   render() {

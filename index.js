@@ -15,6 +15,7 @@ import ProfileCalendar from './modules/profile/Calendar'
 import ProfileCalendarNew from './modules/profile/CalendarNew'
 import ProfileCalendarEdit from './modules/profile/CalendarEdit'
 import ProfileEventNew from './modules/profile/EventNew'
+import CalendarPicker from './modules/common/CalendarPicker'
 
 import { check } from './actions/Check'
 
@@ -56,6 +57,35 @@ function requireNotAuth(nextState, replace) {
   }
 }
 
+// requirement
+function requireCalendarEditId(nextState, replace) {
+  if (!store.getState().root.Profile.result ||
+    !store.getState().root.Profile.calendarEdit.id) {
+    replace({
+      pathname: '/calendar'
+    })
+  }
+}
+
+function requireEventNewCalendarId(nextState, replace) {
+  if (!store.getState().root.Profile.result ||
+    !store.getState().root.Profile.eventNew.calendar) {
+    replace({
+      pathname: '/calendar'
+    })
+  }
+}
+
+function requireCalendarPicker(nextState, replace) {
+  if (!store.getState().root.Profile.result ||
+    !nextState.location.query.calendar ||
+    !nextState.location.query.path) {
+    replace({
+      pathname: '/calendar'
+    })
+  }
+}
+
 render(
   <Provider store={store}>
     <Router history={history}>
@@ -64,8 +94,9 @@ render(
       <Route path='/profile' component={Profile} onEnter={requireAuth}/>
       <Route path='/profile/calendar' component={ProfileCalendar} onEnter={requireAuth} />
       <Route path='/profile/calendar/new' component={ProfileCalendarNew} onEnter={requireAuth} />
-      <Route path='/profile/calendar/edit' component={ProfileCalendarEdit} onEnter={requireAuth} />
-      <Route path='/profile/event/new' component={ProfileEventNew} onEnter={requireAuth} />
+      <Route path='/profile/calendar/edit' component={ProfileCalendarEdit} onEnter={requireCalendarEditId} />
+      <Route path='/profile/event/new' component={ProfileEventNew} onEnter={requireEventNewCalendarId} />
+      <Route path='/profile/event/new/calendar' component={CalendarPicker} onEnter={requireCalendarPicker} />
       <Route path='/signin' component={SignIn} onEnter={requireNotAuth} />
       <Route path='/signup' component={SignUp} onEnter={requireNotAuth} />
     </Router>
