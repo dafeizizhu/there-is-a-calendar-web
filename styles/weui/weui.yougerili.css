@@ -9,3 +9,6 @@
   color: hsla(0,0%,100%,.4);
   background-color: red;
 }
+.weui_cells_radio .weui_check:checked+.weui_icon_checked:before {
+  color: red;
+}

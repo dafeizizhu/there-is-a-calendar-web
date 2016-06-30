@@ -5,13 +5,8 @@ import { hashHistory } from 'react-router'
 import EventDetail from '../../components/profile/EventDetail'
 
 class EventNewModule extends Component {
-  constructor({ location }) {
-    super()
-    this.path = location.pathname
-  }
   handleCalendarClick() {
-    const { calendar } = this.props.root.Profile.eventNew
-    hashHistory.push('/profile/event/new/calendar?path=' + this.path + '&calendar=' + calendar)
+    hashHistory.push('/profile/event/new/calendar')
   }
   render() {
     const { entities, result } = this.props.root.Profile

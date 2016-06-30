@@ -65,9 +65,18 @@ class CalendarModule extends Component {
   handleAddClick() {
     const { dispatch } = this.props
     const { result, entities } = this.props.root.Profile
-    const calendar = entities.users[result].calendars[1]
-    dispatch(beginEventNew(calendar))
-    hashHistory.push('/profile/event/new')
+    if (!result) {
+      hashHistory.push({
+        pathname: '/signin',
+        query: {
+          pathname: '/profile/event/new'
+        }
+      })
+    } else {
+      const calendar = entities.users[result].calendars[1]
+      dispatch(beginEventNew(calendar))
+      hashHistory.push('/profile/event/new')
+    }
   }
   render() {
     return (

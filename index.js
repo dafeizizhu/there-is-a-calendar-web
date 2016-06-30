@@ -15,7 +15,7 @@ import ProfileCalendar from './modules/profile/Calendar'
 import ProfileCalendarNew from './modules/profile/CalendarNew'
 import ProfileCalendarEdit from './modules/profile/CalendarEdit'
 import ProfileEventNew from './modules/profile/EventNew'
-import CalendarPicker from './modules/common/CalendarPicker'
+import ProfileEventNewCalendarPicker from './modules/profile/eventNew/CalendarPicker'
 
 import { check } from './actions/Check'
 
@@ -96,7 +96,7 @@ render(
       <Route path='/profile/calendar/new' component={ProfileCalendarNew} onEnter={requireAuth} />
       <Route path='/profile/calendar/edit' component={ProfileCalendarEdit} onEnter={requireCalendarEditId} />
       <Route path='/profile/event/new' component={ProfileEventNew} onEnter={requireEventNewCalendarId} />
-      <Route path='/profile/event/new/calendar' component={CalendarPicker} onEnter={requireCalendarPicker} />
+      <Route path='/profile/event/new/calendar' component={ProfileEventNewCalendarPicker} onEnter={requireAuth} />
       <Route path='/signin' component={SignIn} onEnter={requireNotAuth} />
       <Route path='/signup' component={SignUp} onEnter={requireNotAuth} />
     </Router>

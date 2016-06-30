@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
-import { BEGIN_EVENT_NEW } from '../../actions/profile/EventNew'
+import { BEGIN_EVENT_NEW } from '../../../actions/profile/EventNew'
+import { CHANGE_CALENDAR } from '../../../actions/profile/eventNew/CalendarPicker'
 
 function title(state = '', action) {
   switch(action.type) {
@@ -51,6 +52,8 @@ function calendar(state = '', action) {
   switch(action.type) {
     case BEGIN_EVENT_NEW:
       return action.event.calendar
+    case CHANGE_CALENDAR:
+      return action.calendarId
     default:
       return state
   }
@@ -87,7 +90,7 @@ const EventNew = combineReducers({
   remark,
   success,
   message,
-  loading,
+  loading
 })
 
 export default EventNew
