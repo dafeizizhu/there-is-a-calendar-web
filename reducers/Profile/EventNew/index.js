@@ -1,12 +1,20 @@
 import { combineReducers } from 'redux'
 
-import { BEGIN_EVENT_NEW } from '../../../actions/profile/EventNew'
+import { 
+  BEGIN_EVENT_NEW,
+  CHANGE_TITLE,
+  CHANGE_LOCATION,
+  CHANGE_BEGIN,
+  CHANGE_END
+} from '../../../actions/profile/EventNew'
 import { CHANGE_CALENDAR } from '../../../actions/profile/eventNew/CalendarPicker'
 
 function title(state = '', action) {
   switch(action.type) {
     case BEGIN_EVENT_NEW:
       return action.event.title
+    case CHANGE_TITLE:
+      return action.title
     default:
       return state
   }
@@ -16,6 +24,8 @@ function location(state = '', action) {
   switch(action.type) {
     case BEGIN_EVENT_NEW:
       return action.event.location
+    case CHANGE_LOCATION:
+      return action.location
     default:
       return state
   }
@@ -25,6 +35,8 @@ function begin(state = new Date(), action) {
   switch(action.type) {
     case BEGIN_EVENT_NEW:
       return action.event.begin
+    case CHANGE_BEGIN:
+      return action.begin
     default:
       return state
   }
@@ -34,6 +46,8 @@ function end(state = new Date(), action) {
   switch(action.type) {
     case BEGIN_EVENT_NEW:
       return action.event.end
+    case CHANGE_END:
+      return action.end
     default:
       return state
   }
